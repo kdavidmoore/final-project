@@ -3,7 +3,8 @@
 This is my final project for the 16 Week Immersive Bootcamp at [DigitalCrafts](http://digitalcrafts.com).
 
 ## Features
-* In progress...
+* AngularJS form validation
+* Error messages load in a nested view using AngularUI Routing
 
 ## Built with...
 * Bootstrap 3

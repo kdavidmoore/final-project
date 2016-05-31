@@ -6,10 +6,11 @@
 		</div>
 	</div>
 	<div class="row">
-		<h5 class="text-warning text-center">{{errorMessage}}</h5>
-	</div>
-	<div class="row">
 		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+
+			<!-- this view loads the error message -->
+			<div ui-view></div>
+
 			<form ng-submit="registerForm()">
 				<div class="form-group">
 					<label for="username">Username</label>

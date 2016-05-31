@@ -41,12 +41,15 @@
 					<a ui-sref="home">Home</a>
 				</li>
 				<li>
+					<a ui-sref="services">Services</a>
+				</li>
+				<li>
 					<a ui-sref="map">Map</a>
 				</li>
 			</ul>
 		  	<ul class="nav navbar-nav navbar-right">
 				<li ng-hide="loggedIn">
-					<a ui-sref="register">Sign Up</a>
+					<a ui-sref="register">Register</a>
 				</li>
 				<li ng-hide="loggedIn">
 					<a ui-sref="login">Log In</a>
@@ -62,6 +65,6 @@
 	  </div>
 	</nav>
 
-	<div class="views" ui-view></div>
+	<div ui-view></div>
 </body>
 </html>
