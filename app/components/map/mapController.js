@@ -1,4 +1,4 @@
-finalProject.controller('mapController', ['$window', function($window) {
+app.controller('mapController', ['$window', function($window) {
 
 	var testMap = $window.L.map('test-map').setView([32.062, -84.924], 15);
 

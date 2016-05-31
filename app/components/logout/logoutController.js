@@ -1,4 +1,4 @@
-finalProject.controller('logoutController', function($http, $cookies) {
+app.controller('logoutController', function($http, $cookies) {
 	// destroy the cookies!
 
 	// wait 10 seconds, then redirect to the home page so the navbar updates

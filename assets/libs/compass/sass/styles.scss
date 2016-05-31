@@ -1,5 +1,6 @@
 @import "vars";
 @import "navbar";
+@import "home";
 
 #test-map {
 	height: 200px;
@@ -7,4 +8,8 @@
 
 a:hover {
 	cursor: pointer;
+}
+
+.content-wrapper {
+	padding-top: 60px;
 }

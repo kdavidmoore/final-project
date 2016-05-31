@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="finalProject">
+<html lang="en" ng-app="app">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
 	<script src="assets/libs/angular-cookies.min.js"></script>
 	<script src="assets/js/mapboxApi.js"></script>
 
-	<script src="app/finalProject.module.js" defer></script>
+	<script src="app/app.module.js" defer></script>
 	<script src="app/shared/navbar/navController.js" defer></script>
 	<script src="app/components/map/mapController.js" defer></script>
 	<script src="app/components/registration/regController.js" defer></script>
@@ -25,7 +25,7 @@
 	
 </head>
 <body>
-	<nav class="nav navbar-default" ng-controller="navController">
+	<nav class="nav navbar-default navbar-fixed-top" ng-controller="navController">
 	  <div class="container-fluid">
 		<div class="navbar-header">
 		  <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false" class="navbar-toggle collapsed">
@@ -33,7 +33,7 @@
 			  <span class="icon-bar"></span>
 			  <span class="icon-bar"></span>
 		  </button>
-		  <a href="home" class="navbar-brand"><img class="brand-img" src="assets/img/corn.png"></a>
+		  <a ui-sref="home" class="navbar-brand"><img class="brand-img" src="assets/img/corn.png"></a>
 		</div>
 		<div id="navbar-collapse-1" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">

@@ -8,12 +8,26 @@
   padding: 10px;
 }
 
-/* line 4, ../libs/compass/sass/styles.scss */
+/* line 1, ../libs/compass/sass/_home.scss */
+.jumbotron {
+  background: url("../img/cornfield.jpg") no-repeat center center;
+  height: 100vh;
+  margin-bottom: 0;
+  padding-top: 60px;
+  padding-bottom: 0;
+}
+
+/* line 5, ../libs/compass/sass/styles.scss */
 #test-map {
   height: 200px;
 }
 
-/* line 8, ../libs/compass/sass/styles.scss */
+/* line 9, ../libs/compass/sass/styles.scss */
 a:hover {
   cursor: pointer;
+}
+
+/* line 13, ../libs/compass/sass/styles.scss */
+.content-wrapper {
+  padding-top: 60px;
 }

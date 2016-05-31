@@ -1,4 +1,4 @@
-finalProject.controller('navController', function($scope, $location, $cookies){
+app.controller('navController', function($scope, $location, $cookies){
 	// watch for path changes
 	$scope.$watch(function(){
 		return $location.path();

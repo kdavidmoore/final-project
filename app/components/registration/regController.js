@@ -1,4 +1,4 @@
-finalProject.controller('regController', function($http, $cookies) {
+app.controller('regController', function($http, $cookies) {
 	// if the user is already logged in, send them back to the home page (until more pages are up)
 	if ($cookies.get('token')) {
 		$state.go('home');

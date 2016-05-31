@@ -1,8 +1,8 @@
-var finalProject = angular.module('finalProject', ['ui.router', 'ngCookies']);
+var app = angular.module('app', ['ui.router', 'ngCookies']);
 
 const API_URL = 'http://localhost:3090';
 
-finalProject.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
 	// for any unmatched url, redirect to /home
 	$urlRouterProvider.otherwise("/home");
 	// now set up the states
