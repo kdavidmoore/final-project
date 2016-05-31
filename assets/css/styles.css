@@ -1,0 +1,19 @@
+/* line 1, ../libs/compass/sass/_navbar.scss */
+.brand-img {
+  width: 30px;
+}
+
+/* line 5, ../libs/compass/sass/_navbar.scss */
+.navbar-brand {
+  padding: 10px;
+}
+
+/* line 4, ../libs/compass/sass/styles.scss */
+#test-map {
+  height: 200px;
+}
+
+/* line 8, ../libs/compass/sass/styles.scss */
+a:hover {
+  cursor: pointer;
+}

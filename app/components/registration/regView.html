@@ -1,0 +1,36 @@
+<div class="container" ng-controller="regController">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>Registration</h1>
+			<h5>Choose a username and password</h5>
+		</div>
+	</div>
+	<div class="row">
+		<h5 class="text-warning text-center">{{errorMessage}}</h5>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+			<form ng-submit="registerForm()">
+				<div class="form-group">
+					<label for="username">Username</label>
+					<input type="text" id="username"  class="form-control" ng-model="username" ng-minlength="6" ng-maxlength="20" placeholder="Choose a username">
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" id="password" class="form-control" ng-model="password" ng-minlength="6" ng-maxlength="20" placeholder="Choose a password">
+				</div>
+				<div class="form-group">
+					<label for="password2">Password (again)</label>
+					<input type="password" id="password2" class="form-control" ng-model="password2" ng-minlength="6" ng-maxlength="20" placeholder="Repeat the password">
+				</div>
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" id="email" class="form-control" ng-model="email" minlength="6" maxlength="20" placeholder="Your email address">
+				</div>
+				<div class="button-holder">
+					<button type="submit" class="btn btn-success">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
