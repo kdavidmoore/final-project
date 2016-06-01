@@ -1,4 +1,4 @@
-app.controller('regController', function($http, $cookies) {
+app.controller('regController', function($state, $scope, $http, $cookies) {
 	// if the user is already logged in, send them back to the home page (until more pages are up)
 	if ($cookies.get('token')) {
 		$state.go('home');
@@ -13,16 +13,15 @@ app.controller('regController', function($http, $cookies) {
 				data: {
 					username: $scope.username,
 					password: $scope.password,
-					password2: $scope.password2,
 					email: $scope.email
 				}
 			}).then(function successCallback(response) {
 				if (response.data.success == 'added') {
 					var expDate = new Date();
   					expDate.setDate(expDate.getTime() + (30 * 60000));
-					// get a random token back from the API and store it inside cookies with an expiration date of 30 minutes from now
+					// get a token back from the API and store it inside cookies with an expiration date of 30 minutes from now
 					$cookies.put('token', response.data.token, {'expires': expDate});
-					//redirect to home page until more pages are up
+					// redirect to home page until more pages are up
 					$state.go('home');
 				} else if (response.data.failure == 'notUnique') {
 					$state.go('.userError');
