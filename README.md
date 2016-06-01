@@ -18,7 +18,7 @@ You will need a public access token from Mapbox for the embedded map to work. St
 ```javascript
 const pubAccessToken = 'myPublicAccessTokenString';
 ```
-When you create a Mapbox account, you will also need to go to the [Mapbox Editor](https://www.mapbox.com/studio/classic/projects/) and create a new project. Store the project ID assets/js/mapboxApi.js:
+When you create a Mapbox account, you will also need to go to the [Mapbox Editor](https://www.mapbox.com/studio/classic/projects/) and create a new project. Store the project ID in assets/js/mapboxApi.js:
 ```javascript
 const projectId = 'myMapboxEditorProjectId';
 ```

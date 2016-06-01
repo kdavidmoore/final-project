@@ -24,13 +24,13 @@ app.controller('regController', function($state, $scope, $http, $cookies) {
 					// redirect to home page until more pages are up
 					$state.go('home');
 				} else if (response.data.failure == 'notUnique') {
-					$state.go('.userError');
+					$state.go('.error', { problem: 'username' });
 				}
 			}, function errorCallback(response) {
 				console.log(response.status);
 			});
 		} else {
-			$state.go('.passwordError');
+			$state.go('.error', { problem: 'password' });
 		}
 	};
 });

@@ -15,18 +15,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url: "/register",
 		templateUrl: "app/components/registration/regView.html"
 	})
-	.state('register.userError', {
-		url: "/error",
+	.state('register.error', {
+		url: "/error/:problem",
 		templateUrl: "app/shared/error/errorView.html",
-		controller: function($scope) {
-			$scope.errorMessage = "That username is taken.";
-		}
-	})
-	.state('register.passwordError', {
-		url: "/error",
-		templateUrl: "app/shared/error/errorView.html",
-		controller: function($scope) {
-			$scope.errorMessage = "The passwords entered do not match.";
+		controller: function($stateParams, $scope) {
+			if ($stateParams.problem == "username") {
+				$scope.errorMessage = "That username is taken.";
+			} else if ($stateParams.problem == "password") {
+				$scope.errorMessage = "The passwords entered do not match.";
+			}
 		}
 	})
 	.state('login', {
@@ -34,10 +31,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl: "app/components/login/loginView.html"
 	})
 	.state('login.error', {
-		url: "/error",
+		url: "/error/:problem",
 		templateUrl: "app/shared/error/errorView.html",
-		controller: function($scope) {
-			$scope.errorMessage = "The username or password entered does not match our records.";
+		controller: function($stateParams, $scope) {
+			if ($stateParams.problem == "username") {
+				$scope.errorMessage = "The username entered does not exist in our system.";
+			} else if ($stateParams.problem == "password") {
+				$scope.errorMessage = "The password entered does not match our records.";
+			} 
 		}
 	})
 	.state('map', {

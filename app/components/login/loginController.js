@@ -14,9 +14,9 @@ app.controller('loginController', function($state, $scope, $http, $cookies) {
 			}
 		}).then(function successCallback(response) {
 			if (response.data.failure == 'noMatch') {
-				$state.go('.error');
+				$state.go('.error', { problem: 'password' });
 			} else if (response.data.failure == 'noUser') {
-				$state.go('.error');
+				$state.go('.error', { problem: 'username' });
 			} else if (response.data.success == 'match') {
 				var expDate = new Date();
   				expDate.setDate(expDate.getTime() + (30 * 60000));
