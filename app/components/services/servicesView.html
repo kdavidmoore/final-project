@@ -1,0 +1,20 @@
+<div class="container content-wrapper" ng-controller="servicesController">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>Services</h1>
+			<h5>Choose from one of our services to get started</h5>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<ul>
+				<li ng-repeat="item in services">
+					<a ui-sref="services.service({path: '{{item.param}}' })">{{item.title}} - {{item.description}}</a>
+				</li>
+			</ul>
+			<hr>
+			<!-- load the form for the selected service -->
+			<div ui-view></div>
+		</div>
+	</div>
+</div>

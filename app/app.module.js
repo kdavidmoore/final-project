@@ -41,6 +41,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			} 
 		}
 	})
+	.state('services', {
+		url: "/services",
+		templateUrl: "app/components/services/servicesView.html"
+	})
+	.state('services.service', {
+		url: "/*path",
+		templateUrl: "app/components/services/servicesFormView.html"
+	})
 	.state('map', {
 		url: "/map",
 		templateUrl: "app/components/map/mapView.html"

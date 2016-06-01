@@ -1,7 +1,7 @@
 app.controller('regController', function($state, $scope, $http, $cookies) {
-	// if the user is already logged in, send them back to the home page (until more pages are up)
+	// if the user is already logged in, send them on to the services page
 	if ($cookies.get('token')) {
-		$state.go('home');
+		$state.go('services');
 	}
 
 	$scope.registerForm = function() {
@@ -21,15 +21,17 @@ app.controller('regController', function($state, $scope, $http, $cookies) {
   					expDate.setDate(expDate.getTime() + (30 * 60000));
 					// get a token back from the API and store it inside cookies with an expiration date of 30 minutes from now
 					$cookies.put('token', response.data.token, {'expires': expDate});
-					// redirect to home page until more pages are up
-					$state.go('home');
+					// redirect to services page
+					$state.go('services');
 				} else if (response.data.failure == 'notUnique') {
+					// redirect to the register.error state, passing a parameter containing info on the error
 					$state.go('.error', { problem: 'username' });
 				}
 			}, function errorCallback(response) {
 				console.log(response.status);
 			});
 		} else {
+			// redirect to the register.error state, passing a parameter containing info on the error
 			$state.go('.error', { problem: 'password' });
 		}
 	};
