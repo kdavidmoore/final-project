@@ -1,17 +1,24 @@
 # Final Project
 
-This is my final project for the 16 Week Immersive Bootcamp at [DigitalCrafts](http://digitalcrafts.com).
+This full-stack eCommerce app is my final project for the 16 Week Immersive Bootcamp at [DigitalCrafts](http://digitalcrafts.com). The app allows users to submit sample information to a Cooperative Extension service and view (random) test results electronically. It's basically a MEAN stack app, except I used MySQL instead of MongoDB as the database.
+
+## Demo here
+* Insert link to portfolio by June 17
 
 ## Features
-* AngularJS form validation
-* Error messages load in a nested view using AngularUI Routing
+* User can register and log in
+* User login status is tracked using ngCookies
+* Input fields validated using AngularJS
+* Error messages and services forms load in nested views using AngularUI Routing
 
 ## Built with...
-* Bootstrap 3
+* Bootstrap 3 (requires jQuery)
+* [Compass](http://compass-style.org/)
 * [Leaflet.js](http://leafletjs.com/)
-* AngularJS
+* AngularJS v1.5.5
 * [AngularUI Router](https://github.com/angular-ui/ui-router)
-* More to come...
+* [Express](http://expressjs.com/)
+* MySQL and Node.js driver for [mysql](https://www.npmjs.com/package/mysql)
 
 ### Note:
 You will need a public access token from Mapbox for the embedded map to work. Store your access token under assets/js/mapboxApi.js like so:
