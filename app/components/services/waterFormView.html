@@ -1,0 +1,109 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+			<form ng-submit="waterForm()">
+				<h4>Sample Location</h4>
+				<div class="form-group">
+					<label for="address" class="control-label">Address</label>
+					<textarea id="address" class="form-control" ng-model="address" rows="4"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="county" class="control-label">County</label>
+					<input type="text" id="county" class="form-control" ng-model="county" placeholder="" ng-minlength="2" ng-maxlength="20">
+				</div>
+				<h4>Type of Sample</h4>
+				<div class="radio">
+				  <label>
+					<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+					Household well
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+					<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+					Irrigation well
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+					<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+					Irrigation pond
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+					<input type="radio" name="optionsRadios" id="optionsRadios4" value="option4">
+					Municipal water
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+					<input type="radio" name="optionsRadios" id="optionsRadios5" value="option5">
+					Fish pond
+				  </label>
+				</div>
+				<h4>Well Information</h4>
+				<div class="form-group col-sm-12 col-md-6">
+					<label for="well-depth" class="control-label">Well depth (ft)</label>
+					<input type="number" id="well-depth" class="form-control" ng-model="wellDepth" placeholder="">
+				</div>
+				<div class="form-group col-sm-12 col-md-6">
+					<label for="well-casing-diam" class="control-label">Well casing diameter (in)</label>
+					<input type="number" id="well-casing-diam" class="form-control" ng-model="wellCasingDiam" placeholder="">
+				</div>
+				<div class="form-group">
+					<label for="end-use" class="control-label">End use of the water source</label>
+					<input type="text" id="end-use" class="form-control" ng-model="endUse" placeholder="">
+				</div>
+				<div class="form-group">
+					<label for="test-reasons" class="control-label">Reason(s) for testing</label>
+					<textarea id="test-reasons" class="form-control" ng-model="testReasons" rows="3"></textarea>
+				</div>
+				<h4>Tests Requested</h4>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="">
+						Basic test (includes: pH, P, K, Ca, Mg, Mn, Fe, Al, B, Cu, Cr, Mo, Ni, Si, Na, Zn, Calculated Hardness)
+				  	</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="">
+						Nitrate (NO3-N)
+				  	</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="">
+						Nitrite (NO2-N)
+				  	</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="">
+						Arsenic
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="">
+						Lead
+				  	</label>
+				</div>
+				<div class="checkbox">
+				  <label>
+					<input type="checkbox" value="">
+						Radon
+				  	</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="">
+						Uranium
+				  	</label>
+				</div>
+				<button type="submit" class="btn btn-success">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
