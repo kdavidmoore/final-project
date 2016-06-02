@@ -1,0 +1,21 @@
+<div class="container">
+
+	<div class="button-holder">
+		<form action="http://localhost:3090/payment" method="POST">
+			<script
+				src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+				data-key="pk_test_S1PLtt6vW1RchhitC9359CNc"
+				data-amount="5000"
+				data-name="Payment"
+				data-description="Your payment for water testing services"
+				data-image="/assets/img/corn.png"
+				data-locale="auto">
+			</script>
+			<input type="hidden" name="stripeAmt" value="5000">
+			<input type="hidden" name="stripeEmail" value="testEmail@test.com">
+		</form>
+		<a ui-sref="services" class="fake-button btn btn-danger">Cancel Order
+		</a>
+	</div>
+
+</div>

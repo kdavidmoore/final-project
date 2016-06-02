@@ -2,6 +2,21 @@ var app = angular.module('app', ['ui.router', 'ngCookies']);
 
 const API_URL = 'http://localhost:3090';
 
+app.factory('UserAuthService', function($cookies, $http) {
+	return {
+		checkToken: function() {
+			return $http({
+				method: 'POST',
+				url: API_URL + '/checkToken',
+				data: { token: $cookies.get('token') }
+			}).then(function(result) {
+				return result.data;
+			});
+		}
+	}
+});
+
+
 app.config(function($stateProvider, $urlRouterProvider) {
 	// for any unmatched url, redirect to /home
 	$urlRouterProvider.otherwise("/home");
@@ -47,8 +62,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	})
 	.state('services.service', {
 		url: "/*path",
-		// templateUrl: "app/components/services/" + path + "FormView.html"
 		templateUrl: function ($stateParams){
+			// build the templateUrl (the html that is loaded into the view) based on
+			// the path variable (passed into the state from the link that was clicked on)
 			return 'app/components/services/' + $stateParams.path + 'FormView.html';
 		}
 	})

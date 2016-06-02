@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-controller="waterController">
 	<div class="row">
 		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 			<form ng-submit="waterForm()">
@@ -13,34 +13,34 @@
 				</div>
 				<h4>Type of Sample</h4>
 				<div class="radio">
-				  <label>
-					<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-					Household well
-				  </label>
+					<label>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+						Household well
+					</label>
 				</div>
 				<div class="radio">
-				  <label>
-					<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-					Irrigation well
-				  </label>
+					<label>
+						<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+						Irrigation well
+					</label>
 				</div>
 				<div class="radio">
-				  <label>
-					<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-					Irrigation pond
-				  </label>
+					<label>
+						<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+						Irrigation pond
+					</label>
 				</div>
 				<div class="radio">
-				  <label>
-					<input type="radio" name="optionsRadios" id="optionsRadios4" value="option4">
-					Municipal water
-				  </label>
+					<label>
+						<input type="radio" name="optionsRadios" id="optionsRadios4" value="option4">
+						Municipal water
+					</label>
 				</div>
 				<div class="radio">
-				  <label>
-					<input type="radio" name="optionsRadios" id="optionsRadios5" value="option5">
-					Fish pond
-				  </label>
+					<label>
+						<input type="radio" name="optionsRadios" id="optionsRadios5" value="option5">
+						Fish pond
+					</label>
 				</div>
 				<h4>Well Information</h4>
 				<div class="form-group col-sm-12 col-md-6">
@@ -64,19 +64,19 @@
 					<label>
 						<input type="checkbox" value="">
 						Basic test (includes: pH, P, K, Ca, Mg, Mn, Fe, Al, B, Cu, Cr, Mo, Ni, Si, Na, Zn, Calculated Hardness)
-				  	</label>
+					</label>
 				</div>
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" value="">
-						Nitrate (NO3-N)
-				  	</label>
+						Nitrate (NO<sub>3</sub>-N)
+					</label>
 				</div>
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" value="">
-						Nitrite (NO2-N)
-				  	</label>
+						Nitrite (NO<sub>2</sub>-N)
+					</label>
 				</div>
 				<div class="checkbox">
 					<label>
@@ -88,19 +88,19 @@
 					<label>
 						<input type="checkbox" value="">
 						Lead
-				  	</label>
+					</label>
 				</div>
 				<div class="checkbox">
-				  <label>
-					<input type="checkbox" value="">
+					<label>
+						<input type="checkbox" value="">
 						Radon
-				  	</label>
+					</label>
 				</div>
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" value="">
 						Uranium
-				  	</label>
+					</label>
 				</div>
 				<button type="submit" class="btn btn-success">Submit</button>
 			</form>

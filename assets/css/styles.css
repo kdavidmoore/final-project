@@ -31,3 +31,14 @@ a:hover {
 .content-wrapper {
   padding-top: 60px;
 }
+
+/* line 17, ../libs/compass/sass/styles.scss */
+.button-holder {
+  padding: 10px 0 20px 0;
+}
+
+/* line 21, ../libs/compass/sass/styles.scss */
+.fake-button {
+  min-width: 120px;
+  margin-left: 5px;
+}

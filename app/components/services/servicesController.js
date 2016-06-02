@@ -6,7 +6,7 @@ app.controller('servicesController', function($state, $scope, $http){
 	$scope.services = [
 	{
 		title: "Water Testing",
-		description: "let us handle all of your groundwater testing needs",
+		description: "let us handle all of your water testing needs",
 		param: "water"
 	}
 	];

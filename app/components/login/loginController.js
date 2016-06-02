@@ -1,8 +1,10 @@
-app.controller('loginController', function($state, $scope, $http, $cookies) {
+app.controller('loginController', function($state, $scope, $http, $cookies, UserAuthService) {
 	// if the user is already logged in, send them on to the services page
-	if ($cookies.get('token')) {
-		$state.go('services');
-	}
+	UserAuthService.checkToken().then(function(data) {
+		if (data) {
+			$state.go('services');
+		}
+	});
 
 	$scope.loginForm = function() {
 		$http({
@@ -23,7 +25,7 @@ app.controller('loginController', function($state, $scope, $http, $cookies) {
 				var expDate = new Date();
   				expDate.setDate(expDate.getTime() + (30 * 60000));
 				// store the token inside cookies with an expiration date of 30 minutes from now
-				$cookies.put('token', response.data.token, {'expires': expDate});
+				$cookies.put('token', response.data.token, { 'path': '/', 'expires': expDate });
 				//redirect to services page
 				$state.go('services');
 			}
