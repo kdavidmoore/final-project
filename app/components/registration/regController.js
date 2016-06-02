@@ -1,7 +1,7 @@
 app.controller('regController', function($state, $scope, $http, $cookies, UserAuthService) {
 	// if the user is already logged in, send them on to the services page
 	UserAuthService.checkToken().then(function(data) {
-		if (data) {
+		if (data.success == "validated") {
 			$state.go('services');
 		}
 	});

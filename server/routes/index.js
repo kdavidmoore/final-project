@@ -31,9 +31,6 @@ router.post('/checkToken', function(req, res, next) {
 
 		connection.query('SELECT * FROM `accounts` WHERE `token` = ?', [req.body.token],
 			function(err, results, fields) {
-				
-				console.log(results);
-
 				if (err) {
 					throw err;
 				} else if (results.length > 0) {

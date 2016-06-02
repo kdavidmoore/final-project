@@ -1,7 +1,3 @@
-app.controller('logoutController', function($state, $cookies) {
-	// destroy the cookies!
-
-	// wait 10 seconds, then redirect to the home page so the navbar updates
-	// or just reload the current state
-	$state.reload()
+app.controller('logoutController', function($cookies) {
+	$cookies.remove('token', { 'path': '/' });
 });

@@ -8,7 +8,7 @@ app.controller('navController', function($scope, $location, $cookies, UserAuthSe
 		// show or hide navbar links appropriately
 		UserAuthService.checkToken().then(function(data) {
 			console.log(data);
-			if (data) {
+			if (data.success == "validated") {
 				$scope.loggedIn = true;
 			} else {
 				$scope.loggedIn = false;
