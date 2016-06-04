@@ -136,9 +136,9 @@ router.post('/payment', function(req, res, next){
 		description: "Charge for " + req.body.stripeEmail // obtained with hidden input field
 	}, function(err, charge) {
 		if (err && err.type === 'StripeCardError') {
-			res.json({ failure: 'declined' });
+			res.render('error', { message: 'There was a problem processing your Stripe payment.' });
 		} else {
-			res.json({ success: 'paid' });
+			res.render('index', { title: 'Success', body: 'Your order has been processed.' });
 		}
 	});
 });
