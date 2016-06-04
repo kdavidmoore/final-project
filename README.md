@@ -1,6 +1,6 @@
 # Final Project
 
-This full-stack eCommerce app is my final project for the 16 Week Immersive Bootcamp at [DigitalCrafts](http://digitalcrafts.com). The app allows users to submit sample information to a Cooperative Extension service and view (random) test results electronically. It's basically a MEAN stack app, except I used MySQL instead of MongoDB as the database.
+This full-stack eCommerce app is my final project for the 16 Week Immersive Bootcamp at [DigitalCrafts](http://digitalcrafts.com). The app allows users to submit sample information to a Cooperative Extension service and view (random) test results electronically. It's basically a MEAN stack app, except I used MySQL instead of MongoDB as the database. Why MySQL? Well, because I like the query syntax better.
 
 ## Demo here
 * Insert link to portfolio by June 17
@@ -9,7 +9,8 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * User can register and log in
 * User login status is tracked using ngCookies
 * Input fields validated using AngularJS
-* Error messages and services forms load in nested views using AngularUI Routing
+* Error messages and services-forms load in nested views using AngularUI Routing
+	- Do we need to load them in nested views? Of course not; it's just a demonstration of AngularUI Routing. Otherwise we could just use ng-show, jQuery, or even vanilla JavaScript.
 
 ## Built with...
 * Bootstrap 3 (requires jQuery)

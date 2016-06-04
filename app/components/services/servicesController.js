@@ -14,7 +14,8 @@ app.controller('servicesController', function($state, $scope, $http) {
 	// submit formData to the server
 	// abstract this to a custom service at some point
 	$scope.submitForm = function() {
-			$http({
+		
+		$http({
 			method: 'POST',
 			url: API_URL + '/submitServicesForm',
 			data: $scope.formData
@@ -28,6 +29,22 @@ app.controller('servicesController', function($state, $scope, $http) {
 		}, function errorCallback(response) {
 			console.log(response.status);
 		});
+	}
+
+	// for demonstration purposes, this function automatically fills out the form with some info
+	$scope.autoFill = function() {
+		
+		$scope.formData = {
+			address: "123 Long Branch Rd",
+			county: "Baldwin",
+			sampleType: "householdWell",
+			wellDepth: 25,
+			wellCasingDiam: 18,
+			endUse: "drinking",
+			testReasons: "old pipes",
+			basicTest: true,
+			lead: true
+		}
 	}
 
 });
