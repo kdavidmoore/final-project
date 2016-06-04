@@ -68,6 +68,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			return 'app/components/services/' + $stateParams.path + 'FormView.html';
 		}
 	})
+	.state('payment', {
+		url: "/payment",
+		templateUrl: "app/components/payment/paymentView.html"
+	})
 	.state('map', {
 		url: "/map",
 		templateUrl: "app/components/map/mapView.html"

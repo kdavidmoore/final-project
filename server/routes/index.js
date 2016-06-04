@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
-
+var nodemailer = require('nodemailer');
 var bcrypt = require('bcrypt-nodejs');
 var randtoken = require('rand-token');
-
 var stripe = require("stripe")(
 	"pk_test_S1PLtt6vW1RchhitC9359CNc"
 );
+
+//var transporter = nodemailer.createTransport(transport[, defaults]);
 
 // create a connection to the final-project database
 var mysql = require('mysql');
@@ -109,6 +110,21 @@ router.post('/login', function(req, res, next) {
 				res.json({ failure: 'noUser' });
 			}
 		});
+});
+
+
+router.post('/submitServicesForm', function(req, res, next){
+
+	var newOrder = req.body.formData;
+
+	// this is not going to get inserted if I don't set up the table to handle each and every field
+
+	// that moment when you realize you should've used a non-relational database
+	
+	// connection.query('INSERT INTO `orders` SET ?', newOrder, function(){
+
+	// });
+	res.json({ success: "added"});
 });
 
 
