@@ -31,7 +31,7 @@ app.controller('servicesController', function($state, $scope, $http) {
 		});
 	}
 
-	// for demonstration purposes, this function automatically fills out the form with some info
+	// for demonstration purposes, this function fills out the form with some dummy info
 	$scope.autoFill = function() {
 		
 		$scope.formData = {
@@ -42,8 +42,8 @@ app.controller('servicesController', function($state, $scope, $http) {
 			wellCasingDiam: 18,
 			endUse: "drinking",
 			testReasons: "old pipes",
-			basicTest: true,
-			lead: true
+			basicTest: 1,
+			lead: 1
 		}
 	}
 

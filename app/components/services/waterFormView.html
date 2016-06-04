@@ -62,43 +62,43 @@
 				<h4>Tests Requested</h4>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.basicTest">
+						<input type="checkbox" ng-model="formData.basicTest" ng-true-value="1" ng-false-value="0">
 						Basic test (includes: pH, P, K, Ca, Mg, Mn, Fe, Al, B, Cu, Cr, Mo, Ni, Si, Na, Zn, Calculated Hardness)
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.nitrate">
+						<input type="checkbox" ng-model="formData.nitrate" ng-true-value="1" ng-false-value="0">
 						Nitrate (NO<sub>3</sub>-N)
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.nitrite">
+						<input type="checkbox" ng-model="formData.nitrite" ng-true-value="1" ng-false-value="0">
 						Nitrite (NO<sub>2</sub>-N)
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.arsenic">
+						<input type="checkbox" ng-model="formData.arsenic" ng-true-value="1" ng-false-value="0">
 						Arsenic
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.lead">
+						<input type="checkbox" ng-model="formData.lead" ng-true-value="1" ng-false-value="0">
 						Lead
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.radon">
+						<input type="checkbox" ng-model="formData.radon" ng-true-value="1" ng-false-value="0">
 						Radon
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.uranium">
+						<input type="checkbox" ng-model="formData.uranium" ng-true-value="1" ng-false-value="0">
 						Uranium
 					</label>
 				</div>
@@ -108,7 +108,7 @@
 				</div>
 
 				<div class="button-holder">
-					<a ng-click="autoFill()" class="text-warning">Help! Just auto-fill these fields for me.</a>
+					<a ng-click="autoFill()" class="text-warning">Help! Auto-fill these fields for me.</a>
 				</div>
 			</form>
 		</div>

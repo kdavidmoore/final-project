@@ -115,16 +115,15 @@ router.post('/login', function(req, res, next) {
 
 router.post('/submitServicesForm', function(req, res, next){
 
-	var newOrder = req.body.formData;
-
-	// this is not going to get inserted if I don't set up the table to handle each and every field
-
+	// the form data are not going to get inserted if using a form with unexpected fields
 	// that moment when you realize you should've used a non-relational database
-	
-	// connection.query('INSERT INTO `orders` SET ?', newOrder, function(){
-
-	// });
-	res.json({ success: "added"});
+	connection.query('INSERT INTO `orders` SET ?', req.body, function(err, result){
+		if (err) {
+			throw err;
+		} else {
+			res.json({ success: "added" });
+		}
+	});
 });
 
 
