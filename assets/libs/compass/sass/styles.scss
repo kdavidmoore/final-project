@@ -1,24 +1,5 @@
 @import "vars";
+@import "shared";
 @import "navbar";
 @import "home";
-
-#test-map {
-	height: 200px;
-}
-
-a:hover {
-	cursor: pointer;
-}
-
-.content-wrapper {
-	padding-top: 60px;
-}
-
-.button-holder {
-	padding: 10px 0 20px 0;
-}
-
-.fake-button {
-	min-width: 120px;
-	margin-left: 5px;
-}
+@import "map";

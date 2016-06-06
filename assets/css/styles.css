@@ -1,3 +1,24 @@
+/* line 1, ../libs/compass/sass/_shared.scss */
+a:hover {
+  cursor: pointer;
+}
+
+/* line 5, ../libs/compass/sass/_shared.scss */
+.content-wrapper {
+  padding-top: 60px;
+}
+
+/* line 9, ../libs/compass/sass/_shared.scss */
+.button-holder {
+  padding: 10px 0 20px 0;
+}
+
+/* line 13, ../libs/compass/sass/_shared.scss */
+.fake-button {
+  min-width: 120px;
+  margin-left: 5px;
+}
+
 /* line 1, ../libs/compass/sass/_navbar.scss */
 .brand-img {
   width: 30px;
@@ -8,6 +29,82 @@
   padding: 10px;
 }
 
+/* line 9, ../libs/compass/sass/_navbar.scss */
+.navbar-default {
+  background-color: #2C3E50;
+  border-color: #0C2032;
+}
+/* line 12, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+/* line 14, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #fff;
+}
+/* line 16, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+/* line 20, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+/* line 22, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #fff;
+}
+/* line 25, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #fff;
+  background-color: #0C2032;
+}
+/* line 29, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #fff;
+  background-color: #0C2032;
+}
+/* line 32, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-toggle {
+  border-color: #0C2032;
+}
+/* line 34, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #0C2032;
+}
+/* line 36, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+/* line 38, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+/* line 41, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+/* line 43, ../libs/compass/sass/_navbar.scss */
+.navbar-default .navbar-link:hover {
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  /* line 47, ../libs/compass/sass/_navbar.scss */
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  /* line 49, ../libs/compass/sass/_navbar.scss */
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #fff;
+  }
+  /* line 52, ../libs/compass/sass/_navbar.scss */
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #fff;
+    background-color: #0C2032;
+  }
+}
 /* line 1, ../libs/compass/sass/_home.scss */
 .jumbotron {
   background: url("../img/cornfield.jpg") no-repeat center center;
@@ -17,28 +114,7 @@
   padding-bottom: 0;
 }
 
-/* line 5, ../libs/compass/sass/styles.scss */
+/* line 1, ../libs/compass/sass/_map.scss */
 #test-map {
   height: 200px;
-}
-
-/* line 9, ../libs/compass/sass/styles.scss */
-a:hover {
-  cursor: pointer;
-}
-
-/* line 13, ../libs/compass/sass/styles.scss */
-.content-wrapper {
-  padding-top: 60px;
-}
-
-/* line 17, ../libs/compass/sass/styles.scss */
-.button-holder {
-  padding: 10px 0 20px 0;
-}
-
-/* line 21, ../libs/compass/sass/styles.scss */
-.fake-button {
-  min-width: 120px;
-  margin-left: 5px;
 }

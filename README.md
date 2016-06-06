@@ -22,7 +22,7 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * MySQL and Node.js driver for [mysql](https://www.npmjs.com/package/mysql)
 
 ### Note:
-You will need a public access token from Mapbox for the embedded map to work. Store your access token under assets/js/mapboxApi.js like so:
+If you download the source code and attempt to run the app on your computer, you will need a public access token from Mapbox. Otherwise, the embedded maps (in progress) will not work. Store your access token under assets/js/mapboxApi.js like so:
 ```javascript
 const pubAccessToken = 'myPublicAccessTokenString';
 ```
