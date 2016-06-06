@@ -120,7 +120,7 @@ router.post('/login', function(req, res, next) {
 					var token = randtoken.generate(32);
 
 					connection.query('UPDATE `accounts` SET `token` = ? WHERE `username` = ?',
-						[token, req.body.username], function(err, results) {
+						[token, req.body.username], function(err, result) {
 						if (err) {
 							throw err;
 						} else {
@@ -142,6 +142,7 @@ router.post('/login', function(req, res, next) {
 
 
 router.post('/submitServicesForm', function(req, res, next) {
+	// when a sample submission form is posted, add the sample data/metadata to the database
 	var newOrder = req.body;
 
 	connection.query('INSERT INTO `orders` SET ?', newOrder, function(err, result){
@@ -151,6 +152,23 @@ router.post('/submitServicesForm', function(req, res, next) {
 			res.json({ success: "added" });
 		}
 	});
+});
+
+
+router.post('/getOrderId', function(req, res, next) {
+	connection.query('SELECT `id` FROM `orders` WHERE `token` = ? ORDER BY `timestamp` DESC', [req.body.token],
+		function(err, results, fields) {
+			if (err) {
+				throw err;
+			} else {
+				if (results.length > 0) {
+					res.json({ orderId: results[0].id });
+				} else {
+					res.json({ failure: 'problemGettingOrderId'});
+				}
+			}
+		});
+
 });
 
 
@@ -165,16 +183,19 @@ router.post('/payment', function(req, res, next) {
 		if (err && err.type === 'StripeCardError') {
 			res.render('error', { message: 'There was a problem processing your Stripe payment.' });
 		} else {
-			res.render('index', { title: 'Success', body: 'Your order has been processed.' });
+			connection.query('UPDATE `orders` SET `orderStatus` = ? WHERE `id` = ?',
+				['paid', req.body.orderId], function(err, result) {
+					if (err) {
+						throw err;
+					} else {
+						res.render('index', {
+							title: 'Success',
+							body: 'Your order has been processed.'
+						});
+					}
+			});
 		}
 	});
 });
-
-
-// the cancel account process is not yet in place
-router.post('/cancel', function(req, res, next) {
-	console.log(req.body);
-});
-
 
 module.exports = router;

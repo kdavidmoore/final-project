@@ -7,7 +7,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" ng-controller="paymentController">
 		<div class="col-sm-12">
 			<div class="button-holder">
 				<form action="http://localhost:3090/payment" method="POST">
@@ -16,10 +16,11 @@
 						data-key="pk_test_S1PLtt6vW1RchhitC9359CNc"
 						data-amount="5000"
 						data-name="Payment"
-						data-description="Your payment for water testing services"
+						data-description="Payment for your testing service"
 						data-image="/assets/img/corn.png"
 						data-locale="auto">
 					</script>
+					<input type="hidden" name="orderId" value="{{orderId}}">
 					<input type="hidden" name="stripeAmt" value="5000">
 					<input type="hidden" name="stripeEmail" value="testEmail@test.com">
 				</form>

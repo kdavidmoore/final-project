@@ -1,4 +1,4 @@
-app.controller('servicesController', function($state, $scope, $http, HttpAbstractionService) {
+app.controller('servicesController', function($state, $scope, HttpAbstractionService) {
 
 	HttpAbstractionService.getServices().then(function(data) {
 		// get a current list of services from the api
@@ -6,6 +6,8 @@ app.controller('servicesController', function($state, $scope, $http, HttpAbstrac
 	});
 
 	$scope.submitForm = function(formType) {
+		// TODO: add an extra layer of token authentication before form is submitted
+
 		HttpAbstractionService.getUsername().then(function(data) {
 			var username = data.username;
 

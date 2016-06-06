@@ -31,8 +31,10 @@ app.factory('HttpAbstractionService', function($http, $cookies) {
 			url: API_URL + '/submitServicesForm',
 			data: {
 				username: user,
+				token: $cookies.get('token'),
 				orderType: type,
-				orderData: JSON.stringify(data)
+				orderData: JSON.stringify(data),
+				orderStatus: "unpaid"
 			}
 		}).then(function successCallback(result) {
 			return result.data;
@@ -41,9 +43,24 @@ app.factory('HttpAbstractionService', function($http, $cookies) {
 		});
 	}
 
+	function getOrderId() {
+		return $http({
+			method: 'POST',
+			url: API_URL + '/getOrderId',
+			data: {
+				token: $cookies.get('token')
+			}
+		}).then(function successCallback(result) {
+			return result.data.orderId;
+		}, function errorCallback(result) {
+			return result.status;
+		});
+	}
+
 	return {
 		getServices: getServices,
 		getUsername: getUsername,
-		postFormData: postFormData
+		postFormData: postFormData,
+		getOrderId: getOrderId
 	}
 });
