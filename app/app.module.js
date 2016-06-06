@@ -16,6 +16,19 @@ app.factory('UserAuthService', function($cookies, $http) {
 	}
 });
 
+app.factory('GetServices', function($http) {
+	return {
+		getServices: function() {
+			return $http({
+				method: 'GET',
+				url: API_URL + '/getServices'
+			}).then(function(result) {
+				return result.data.results;
+			});
+		}
+	}
+})
+
 
 app.config(function($stateProvider, $urlRouterProvider) {
 	// for any unmatched url, redirect to /home
@@ -71,6 +84,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	.state('payment', {
 		url: "/payment",
 		templateUrl: "app/components/payment/paymentView.html"
+	})
+	.state('results', {
+		url: "/results",
+		templateUrl: "app/components/results/resultsView.html"
+	})
+	.state('results.result', {
+		url: "/*path",
+		templateUrl: function ($stateParams){
+			// build the templateUrl (the html that is loaded into the view) based on
+			// the path variable (passed into the state from the link that was clicked on)
+			return 'app/components/results/' + $stateParams.path + 'ResultsView.html';
+		}
 	})
 	.state('map', {
 		url: "/map",

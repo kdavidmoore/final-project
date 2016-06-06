@@ -1,0 +1,72 @@
+<div ng-controller="servicesController">
+	<div class="row">
+		<div class="col-sm-12 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-4">
+			<form ng-submit="submitForm()">
+				<h4>Sample Location</h4>
+				<div class="form-group">
+					<label for="loc-description" class="control-label">Location Description</label>
+					<input type="text" id="loc-description" class="form-control" ng-model="formData.location" placeholder="" ng-minlength="2" ng-maxlength="20">
+				</div>
+				<div class="form-group">
+					<label for="address" class="control-label">Address</label>
+					<textarea id="address" class="form-control" ng-model="formData.address" rows="4"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="county" class="control-label">County</label>
+					<input type="text" id="county" class="form-control" ng-model="formData.county" placeholder="" ng-minlength="2" ng-maxlength="20">
+				</div>
+				<h4>Crop Code</h4>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.canolaSpringType" ng-true-value="1" ng-false-value="0">
+						701 - Canola - spring type
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.canolaWinterType" ng-true-value="1" ng-false-value="0">
+						702 - Canola - winter type
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.corn001" ng-true-value="1" ng-false-value="0">
+						001 - Corn (for grain) - dryland
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.corn002" ng-true-value="1" ng-false-value="0">
+						002 - Corn (for grain) - irrigated 150 bu/a
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.cornC01" ng-true-value="1" ng-false-value="0">
+						C01 - Corn (for grain) - irrigated 200 bu/a
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.cornC02" ng-true-value="1" ng-false-value="0">
+						C02 - Corn (for grain) - irrigated 250 bu/a
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.cornC03" ng-true-value="1" ng-false-value="0">
+						C03 - Corn (for grain) - irrigated 300 bu/a
+					</label>
+				</div>
+				
+				<div class="button-holder">
+					<button type="submit" class="btn btn-success">Submit</button>
+				</div>
+
+				<div class="button-holder">
+					<a ng-click="autoFill('soil')" class="text-warning">Help! Auto-fill these fields for me.</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

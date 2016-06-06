@@ -1,4 +1,4 @@
-<div class="container" ng-controller="servicesController">
+<div ng-controller="servicesController">
 	<div class="row">
 		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 			<form ng-submit="submitForm()">
@@ -108,7 +108,7 @@
 				</div>
 
 				<div class="button-holder">
-					<a ng-click="autoFill()" class="text-warning">Help! Auto-fill these fields for me.</a>
+					<a ng-click="autoFill('water')" class="text-warning">Help! Auto-fill these fields for me.</a>
 				</div>
 			</form>
 		</div>

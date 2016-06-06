@@ -44,6 +44,18 @@ router.post('/checkToken', function(req, res, next) {
 });
 
 
+router.get('/getServices', function(req, res, next) {
+	connection.query('SELECT * FROM `services` ORDER BY `serviceType`', function(err, results, fields) {
+		if (err) {
+			throw err;
+		} else {
+			console.log(results);
+			res.json({ results });
+		}
+	});
+});
+
+
 router.post('/register', function(req, res, next) {
 
 	var salt = bcrypt.genSaltSync(10);
