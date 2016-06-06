@@ -141,7 +141,7 @@ router.post('/login', function(req, res, next) {
 });
 
 
-router.post('/submitServicesForm', function(req, res, next){
+router.post('/submitServicesForm', function(req, res, next) {
 	var newOrder = req.body;
 
 	connection.query('INSERT INTO `orders` SET ?', newOrder, function(err, result){
@@ -154,7 +154,7 @@ router.post('/submitServicesForm', function(req, res, next){
 });
 
 
-router.post('/payment', function(req, res, next){
+router.post('/payment', function(req, res, next) {
 	
 	stripe.charges.create({
 		amount: req.body.stripeAmount, // obtained with hidden input field
@@ -171,6 +171,7 @@ router.post('/payment', function(req, res, next){
 });
 
 
+// the cancel account process is not yet in place
 router.post('/cancel', function(req, res, next) {
 	console.log(req.body);
 });

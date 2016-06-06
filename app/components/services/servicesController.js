@@ -1,15 +1,15 @@
-app.controller('servicesController', function($state, $scope, $http, ServicesService) {
+app.controller('servicesController', function($state, $scope, $http, HttpAbstractionService) {
 
-	ServicesService.getServices().then(function(data) {
+	HttpAbstractionService.getServices().then(function(data) {
 		// get a current list of services from the api
 		$scope.services = data;
 	});
 
 	$scope.submitForm = function(formType) {
-		ServicesService.getUsername().then(function(data) {
+		HttpAbstractionService.getUsername().then(function(data) {
 			var username = data.username;
 
-			ServicesService.postFormData(formType, username, $scope.formData).then(function(result) {
+			HttpAbstractionService.postFormData(formType, username, $scope.formData).then(function(result) {
 				if (result.success == "added") {
 					$state.go('payment');
 				} else {
