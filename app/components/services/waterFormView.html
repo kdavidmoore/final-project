@@ -1,7 +1,7 @@
 <div ng-controller="servicesController">
 	<div class="row">
-		<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-			<form ng-submit="submitForm()">
+		<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+			<form ng-submit="submitForm('water')">
 				<h4>Sample Location</h4>
 				<div class="form-group">
 					<label for="address" class="control-label">Address</label>
@@ -102,6 +102,9 @@
 						Uranium
 					</label>
 				</div>
+
+				<input type="hidden" ng-model="username" value="kdmoore">
+				<input type="hidden" ng-model="orderType" value="water">
 				
 				<div class="button-holder">
 					<button type="submit" class="btn btn-success">Submit</button>

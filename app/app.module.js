@@ -8,7 +8,9 @@ app.factory('UserAuthService', function($cookies, $http) {
 			return $http({
 				method: 'POST',
 				url: API_URL + '/checkToken',
-				data: { token: $cookies.get('token') }
+				data: {
+					token: $cookies.get('token')
+				}
 			}).then(function(result) {
 				return result.data;
 			});
@@ -16,18 +18,50 @@ app.factory('UserAuthService', function($cookies, $http) {
 	}
 });
 
-app.factory('GetServices', function($http) {
-	return {
-		getServices: function() {
-			return $http({
-				method: 'GET',
-				url: API_URL + '/getServices'
-			}).then(function(result) {
-				return result.data.results;
-			});
-		}
+
+app.factory('ServicesService', function($http, $cookies) {
+	
+	function getServices() {
+		return $http({
+			method: 'GET',
+			url: API_URL + '/getServices'
+		}).then(function(result) {
+			return result.data.results;
+		});
 	}
-})
+
+	function getUsername() {
+		return $http({
+			method: 'POST',
+			url: API_URL + '/getUsername',
+			data: {
+				token: $cookies.get('token')
+			}
+		}).then(function(result) {
+			return result.data.username;
+		});
+	}
+
+	function postFormData(type, user, data) {
+		return $http({
+			method: 'POST',
+			url: API_URL + '/submitServicesForm',
+			data: {
+				username: user,
+				orderType: type,
+				orderData: JSON.stringify(data)
+			}
+		}).then(function(result) {
+			return result.data;
+		});
+	}
+
+	return {
+		getServices: getServices,
+		getUsername: getUsername,
+		postFormData: postFormData
+	}
+});
 
 
 app.config(function($stateProvider, $urlRouterProvider) {

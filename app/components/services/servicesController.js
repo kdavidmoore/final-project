@@ -1,35 +1,27 @@
-app.controller('servicesController', function($state, $scope, $http, GetServices) {
-	// make an http request to the server
-	// get an array of objects back containing the services
-	// set the resulting data equal to $scope.services
+app.controller('servicesController', function($state, $scope, $http, ServicesService) {
 
-	GetServices.getServices().then(function(data) {
-		console.log(data);
+	ServicesService.getServices().then(function(data) {
+		// get a current list of services from the api
 		$scope.services = data;
 	});
 
-	// submit formData to the server
-	// abstract this to a custom service at some point
-	$scope.submitForm = function() {
-		
-		$http({
-			method: 'POST',
-			url: API_URL + '/submitServicesForm',
-			data: $scope.formData
-		}).then(function successCallback(response) {
-			if (response.data.success == "added") {
-				$state.go('payment');
-			} else {
-				console.log(response.data);
-				// display an error message in the view...
-			}
-		}, function errorCallback(response) {
-			console.log(response.status);
+	$scope.submitForm = function(formType) {
+		ServicesService.getUsername().then(function(data) {
+			var username = data.username;
+
+			ServicesService.postFormData(formType, username, $scope.formData).then(function(result) {
+				if (result.success == "added") {
+					$state.go('payment');
+				} else {
+					console.log(response.data);
+					// display an error message in the view...
+				}
+			})
 		});
 	}
 
-	// for demonstration purposes, this function fills out the form with some dummy info
 	$scope.autoFill = function(type) {
+	// for demonstration purposes, this function fills out the form with some dummy info
 		if (type == 'soil') {
 			$scope.formData =
 			{

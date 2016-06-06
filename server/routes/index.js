@@ -29,7 +29,6 @@ router.post('/checkToken', function(req, res, next) {
 	if (req.body.token == undefined) {
 		res.json({ failure: 'noToken' });
 	} else {
-
 		connection.query('SELECT * FROM `accounts` WHERE `token` = ?', [req.body.token],
 			function(err, results, fields) {
 				if (err) {
@@ -44,12 +43,29 @@ router.post('/checkToken', function(req, res, next) {
 });
 
 
+router.post('/getUsername', function(req, res, next) {
+	if (req.body.token == undefined) {
+		res.json({ failure: 'noToken' });
+	} else {
+		connection.query('SELECT `username` FROM `accounts` WHERE `token` = ?', [req.body.token],
+			function(err, results, fields) {
+				if (err) {
+					throw err;
+				} else if (results.length > 0) {
+					res.json({ username: results[0] });
+				} else {
+					res.json({ failure: 'badToken' });
+				}
+			});
+	}
+});
+
+
 router.get('/getServices', function(req, res, next) {
 	connection.query('SELECT * FROM `services` ORDER BY `serviceType`', function(err, results, fields) {
 		if (err) {
 			throw err;
 		} else {
-			console.log(results);
 			res.json({ results });
 		}
 	});
@@ -126,10 +142,9 @@ router.post('/login', function(req, res, next) {
 
 
 router.post('/submitServicesForm', function(req, res, next){
+	var newOrder = req.body;
 
-	// the form data are not going to get inserted if using a form with unexpected fields
-	// that moment when you realize you should've used a non-relational database
-	connection.query('INSERT INTO `orders` SET ?', req.body, function(err, result){
+	connection.query('INSERT INTO `orders` SET ?', newOrder, function(err, result){
 		if (err) {
 			throw err;
 		} else {
