@@ -6,8 +6,34 @@ var randtoken = require('rand-token');
 var stripe = require("stripe")(
 	"pk_test_S1PLtt6vW1RchhitC9359CNc"
 );
+const FROM_ADDRESS = 'myemail@mail.com';
+const FROM_PASS = 'mypassword';
 
-//var transporter = nodemailer.createTransport(transport[, defaults]);
+function sendReceipt(orderId, sendToAddress) {
+	var transporter = nodemailer.createTransport({
+		service: 'Yahoo',
+		auth: {
+			user: FROM_ADDRESS,
+			pass: FROM_PASS
+		}
+	});
+
+	var text = 'Your receipt for your recent order (#' + orderId + ')';
+	var mailOptions = {
+		from: FROM_ADDRESS,
+		to: sendToAddress,
+		subject: 'Email example',
+		text: text
+	}
+
+	transporter.sendMail(mailOptions, function(err, info) {
+		if (err) {
+			throw err;
+		} else {
+			console.log('Message sent: ' + info.response);
+		}
+	});
+}
 
 // create a connection to the final-project database
 var mysql = require('mysql');
@@ -44,6 +70,7 @@ router.post('/checkToken', function(req, res, next) {
 
 
 router.post('/getUsername', function(req, res, next) {
+
 	if (req.body.token == undefined) {
 		res.json({ failure: 'noToken' });
 	} else {
@@ -62,6 +89,7 @@ router.post('/getUsername', function(req, res, next) {
 
 
 router.get('/getServices', function(req, res, next) {
+
 	connection.query('SELECT * FROM `services` ORDER BY `serviceType`', function(err, results, fields) {
 		if (err) {
 			throw err;
@@ -112,13 +140,9 @@ router.post('/login', function(req, res, next) {
 			if (err) {
 				throw err;
 			} else if (results.length > 0) {
-
 				var loginResult = bcrypt.compareSync(req.body.password, results[0].password);
-				
 				if (loginResult) {
-
 					var token = randtoken.generate(32);
-
 					connection.query('UPDATE `accounts` SET `token` = ? WHERE `username` = ?',
 						[token, req.body.username], function(err, result) {
 						if (err) {
@@ -143,9 +167,7 @@ router.post('/login', function(req, res, next) {
 
 router.post('/submitServicesForm', function(req, res, next) {
 	// when a sample submission form is posted, add the sample data/metadata to the database
-	var newOrder = req.body;
-
-	connection.query('INSERT INTO `orders` SET ?', newOrder, function(err, result){
+	connection.query('INSERT INTO `orders` SET ?', req.body, function(err, result){
 		if (err) {
 			throw err;
 		} else {
@@ -173,7 +195,6 @@ router.post('/getOrderId', function(req, res, next) {
 
 
 router.post('/payment', function(req, res, next) {
-	
 	stripe.charges.create({
 		amount: req.body.stripeAmount, // obtained with hidden input field
 		currency: 'usd',
@@ -188,6 +209,7 @@ router.post('/payment', function(req, res, next) {
 					if (err) {
 						throw err;
 					} else {
+						sendReceipt(req.body.orderId, req.body.stripeEmail);
 						res.render('index', {
 							title: 'Success',
 							body: 'Your order has been processed.'
