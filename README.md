@@ -11,8 +11,9 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * Input fields validated using AngularJS
 * Error messages and services-forms load in nested views using AngularUI Routing
 	- Do we need to load them in nested views? Of course not; it's just a demonstration of AngularUI Routing. Otherwise we could just use ng-show, jQuery, or even vanilla JavaScript.
-* Sample submission forms are submitted to the backend using a custom http abstraction service.
-* Nodemailer sends user a confirmation email when order is complete and paid for.
+* Sample submission forms are submitted to the server using a custom http abstraction service.
+* Nodemailer sends the user a confirmation email when order is complete and paid for.
+* User can view the status of each order (unpaid/paid) from the "View orders" page.
 
 ## Built with...
 * Bootstrap 3 (requires jQuery)
@@ -23,7 +24,7 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * [Express](http://expressjs.com/)
 * Node.js [driver](https://www.npmjs.com/package/mysql) for MySQL
 * Node.js [module](https://stripe.com/docs/libraries) for Stripe
-* Nodemailer
+* [Nodemailer](http://nodemailer.com/)
 
 ### Custom AngularJS Services
 * UserAuthService - provides a function to check the token stored in $cookies against the token stored in the MySQL database by making an $http POST request to the backend
@@ -40,8 +41,14 @@ const projectId = 'myMapboxEditorProjectId';
 ```
 
 ### Also note:
-Nodemailer will not work without a valid "from" email address and password. You can use Google, Yahoo, etc., but you will either use [OAuth2 authentication](https://nodemailer.com/using-gmail/), or modify security settings on your email account to allow "Less Secure" apps. Insert your username and password (for testing purposes) into lines 9 and 10 of /server/routes/index.js:
+Nodemailer will not work without a valid "from" email address and password. You can use Google, Yahoo, etc., but you will either use [OAuth2 authentication](https://nodemailer.com/using-gmail/), or modify security settings on your email account to allow "Less Secure" apps. Insert your username and password into /server/routes/secrets.js:
 ```javascript
-const FROM_ADDRESS = 'myemail@mail.com';
-const FROM_PASS = 'mypassword';
+module.exports = {
+	getSecrets: function() {
+		return {
+			FROM_ADDRESS: 'myEmailAddress',
+			FROM_PASS: 'myAccountPassword'
+		};
+	}
+};
 ```

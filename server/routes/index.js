@@ -6,19 +6,20 @@ var randtoken = require('rand-token');
 var stripe = require('stripe')(
 	'pk_test_S1PLtt6vW1RchhitC9359CNc'
 );
+var secrets = require('./secrets');
 
 function sendReceipt(orderId, sendToAddress) {
 	var transporter = nodemailer.createTransport({
 		service: 'Yahoo',
 		auth: {
-			user: FROM_ADDRESS,
-			pass: FROM_PASS
+			user: secrets.getSecrets().FROM_ADDRESS,
+			pass: secrets.getSecrets().FROM_PASS
 		}
 	});
 
 	var text = 'Your receipt for your recent order (#' + orderId + ')';
 	var mailOptions = {
-		from: FROM_ADDRESS,
+		from: secrets.getSecrets().FROM_ADDRESS,
 		to: sendToAddress,
 		subject: 'Email example',
 		text: text
@@ -204,6 +205,7 @@ router.post('/getOrders', function(req, res, next) {
 
 
 router.post('/payment', function(req, res, next) {
+
 	stripe.charges.create({
 		amount: req.body.stripeAmount, // obtained with hidden input field
 		currency: 'usd',
