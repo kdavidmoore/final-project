@@ -1,4 +1,3 @@
-
 app.config(function($stateProvider, $urlRouterProvider) {
 	// for any unmatched url, redirect to /home
 	$urlRouterProvider.otherwise("/home");
@@ -54,17 +53,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url: "/payment",
 		templateUrl: "app/components/payment/paymentView.html"
 	})
-	.state('results', {
-		url: "/results",
-		templateUrl: "app/components/results/resultsView.html"
-	})
-	.state('results.result', {
-		url: "/*path",
-		templateUrl: function ($stateParams){
-			// build the templateUrl (the html that is loaded into the view) based on
-			// the path variable (passed into the state from the link that was clicked on)
-			return 'app/components/results/' + $stateParams.path + 'ResultsView.html';
-		}
+	.state('orders', {
+		url: "/orders",
+		templateUrl: "app/components/orders/ordersView.html"
 	})
 	.state('map', {
 		url: "/map",

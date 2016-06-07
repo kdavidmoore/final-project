@@ -1,0 +1,23 @@
+<div class="container content-wrapper" ng-controller="ordersController">
+	<div class="row">
+		<div class="col-sm-12 col-md-2">
+			<h1>View orders</h1>
+			<h5>View the status of your test orders</h5>
+		</div>
+
+		<div class="col-sm-12 col-md-10">
+			<table class="table">
+				<tr>
+					<th>Sample type</th>
+					<th>Submitted</th>
+					<th>Order status</th>
+				</tr>
+				<tr ng-repeat="item in orders">
+					<td><span style="text-transform: capitalize;">{{item.orderType}}</span></td>
+					<td>{{item.timestamp | date: "MM/dd/yyyy 'at' h:mm a"}}</td>
+					<td>{{item.orderStatus}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

@@ -19,6 +19,11 @@ a:hover {
   margin-left: 5px;
 }
 
+/* line 18, ../libs/compass/sass/_shared.scss */
+.footer {
+  padding: 10px 0 10px 0;
+}
+
 /* line 1, ../libs/compass/sass/_navbar.scss */
 .brand-img {
   width: 30px;

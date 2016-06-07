@@ -1,22 +1,21 @@
 app.controller('servicesController', function($state, $scope, HttpAbstractionService) {
 
-	HttpAbstractionService.getServices().then(function(data) {
+	HttpAbstractionService.getLabServices().then(function(data) {
 		// get a current list of services from the api
 		$scope.services = data;
 	});
 
 	$scope.submitForm = function(formType) {
-		// TODO: add an extra layer of token authentication before form is submitted
-
+		// first, make sure the token validates
+		// TODO...
 		HttpAbstractionService.getUsername().then(function(data) {
 			var username = data.username;
-
 			HttpAbstractionService.postFormData(formType, username, $scope.formData).then(function(result) {
 				if (result.success == "added") {
 					$state.go('payment');
 				} else {
-					console.log(response.data);
-					// display an error message in the view...
+					// display an error message in the view
+					// TODO...
 				}
 			})
 		});

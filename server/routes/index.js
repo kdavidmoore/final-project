@@ -3,11 +3,9 @@ var router = express.Router();
 var nodemailer = require('nodemailer');
 var bcrypt = require('bcrypt-nodejs');
 var randtoken = require('rand-token');
-var stripe = require("stripe")(
-	"pk_test_S1PLtt6vW1RchhitC9359CNc"
+var stripe = require('stripe')(
+	'pk_test_S1PLtt6vW1RchhitC9359CNc'
 );
-const FROM_ADDRESS = 'myemail@mail.com';
-const FROM_PASS = 'mypassword';
 
 function sendReceipt(orderId, sendToAddress) {
 	var transporter = nodemailer.createTransport({
@@ -88,7 +86,7 @@ router.post('/getUsername', function(req, res, next) {
 });
 
 
-router.get('/getServices', function(req, res, next) {
+router.get('/getLabServices', function(req, res, next) {
 
 	connection.query('SELECT * FROM `services` ORDER BY `serviceType`', function(err, results, fields) {
 		if (err) {
@@ -165,7 +163,7 @@ router.post('/login', function(req, res, next) {
 });
 
 
-router.post('/submitServicesForm', function(req, res, next) {
+router.post('/submitSampleForm', function(req, res, next) {
 	// when a sample submission form is posted, add the sample data/metadata to the database
 	connection.query('INSERT INTO `orders` SET ?', req.body, function(err, result){
 		if (err) {
@@ -190,7 +188,18 @@ router.post('/getOrderId', function(req, res, next) {
 				}
 			}
 		});
+});
 
+
+router.post('/getOrders', function(req, res, next) {
+	connection.query('SELECT timestamp, orderType, orderData, orderStatus FROM `orders` WHERE `username` = ?', [req.body.username],
+		function(err, results, fields) {
+		if (err) {
+			throw err;
+		} else {
+			res.json({ results });
+		}
+	})
 });
 
 

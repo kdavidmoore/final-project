@@ -40,7 +40,7 @@ const projectId = 'myMapboxEditorProjectId';
 ```
 
 ### Also note:
-Nodemailer will not work without a valid "from" email address and password. You can use Google, Yahoo, etc., but you will have to either modify your security settings on your email account or use [OAuth2 authentication](https://nodemailer.com/using-gmail/). Insert your username and password (for testing purposes) into lines 9 and 10 of /server/routes/index.js:
+Nodemailer will not work without a valid "from" email address and password. You can use Google, Yahoo, etc., but you will either use [OAuth2 authentication](https://nodemailer.com/using-gmail/), or modify security settings on your email account to allow "Less Secure" apps. Insert your username and password (for testing purposes) into lines 9 and 10 of /server/routes/index.js:
 ```javascript
 const FROM_ADDRESS = 'myemail@mail.com';
 const FROM_PASS = 'mypassword';

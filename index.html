@@ -37,13 +37,13 @@
 					<a ui-sref="register">Register</a>
 				</li>
 				<li ng-hide="loggedIn">
-					<a ui-sref="login">Log In</a>
+					<a ui-sref="login">Log in</a>
 				</li>
 				<li ng-show="loggedIn">
-					<a ui-sref="logout">Log Out</a>
+					<a ui-sref="orders">View orders</a>
 				</li>
 				<li ng-show="loggedIn">
-					<a ui-sref="cancelAcct">Cancel Account</a>
+					<a ui-sref="logout">Log out</a>
 				</li>
 			</ul>
 		</div>
@@ -52,7 +52,7 @@
 
 	<div ui-view></div>
 
-	<footer class="text-center">&copy; 2016 ABC Cooperative Extension</footer>
+	<div class="footer text-center">&copy; 2016 ABC Cooperative Extension</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -73,6 +73,7 @@
 <script src="app/components/logout/logoutController.js"></script>
 <script src="app/components/services/servicesController.js"></script>
 <script src="app/components/payment/paymentController.js"></script>
+<script src="app/components/orders/ordersController.js"></script>
 
 </body>
 </html>
