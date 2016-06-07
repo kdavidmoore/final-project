@@ -10,7 +10,7 @@ app.controller('servicesController', ['$state', '$scope', 'HttpAbstractionServic
 		// TODO...
 		HttpAbstractionService.getUsername().then(function(data) {
 			var username = data.username;
-			HttpAbstractionService.postFormData(formType, username, $scope.formData).then(function(result) {
+			HttpAbstractionService.postSampleData(formType, username, $scope.formData).then(function(result) {
 				if (result.success == "added") {
 					$state.go('payment');
 				} else {

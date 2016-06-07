@@ -14,11 +14,13 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * Sample submission forms are submitted to the server using a custom http abstraction service.
 * Nodemailer sends the user a confirmation email when order is complete and paid for.
 * User can view the status of each order (unpaid/paid) from the "View orders" page.
+* User can view the location of their samples on a map using a geocoding service.
 
 ## Built with...
 * Bootstrap 3 (requires jQuery)
 * [Compass](http://compass-style.org/)
-* [Leaflet.js](http://leafletjs.com/) - this will display sample locations using geocoding
+* [Leaflet.js](http://leafletjs.com/)
+* [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start#sample-request)
 * AngularJS v1.5.5
 * [AngularUI Router](https://github.com/angular-ui/ui-router)
 * [Express](http://expressjs.com/)

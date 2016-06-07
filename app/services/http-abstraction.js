@@ -25,10 +25,10 @@ app.factory('HttpAbstractionService', function($http, $cookies) {
 		});
 	}
 
-	function postFormData(type, user, data) {
+	function postSampleData(type, user, data) {
 		return $http({
 			method: 'POST',
-			url: API_URL + '/submitSampleForm',
+			url: API_URL + '/postSampleData',
 			data: {
 				username: user,
 				token: $cookies.get('token'),
@@ -88,7 +88,7 @@ app.factory('HttpAbstractionService', function($http, $cookies) {
 	return {
 		getLabServices: getLabServices,
 		getUsername: getUsername,
-		postFormData: postFormData,
+		postSampleData: postSampleData,
 		getOrderId: getOrderId,
 		getOrders: getOrders,
 		getSampleLocation: getSampleLocation

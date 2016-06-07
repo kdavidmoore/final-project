@@ -162,7 +162,7 @@ router.post('/login', function(req, res, next) {
 });
 
 
-router.post('/submitSampleForm', function(req, res, next) {
+router.post('/postSampleData', function(req, res, next) {
 	// when a sample submission form is posted, add the sample data/metadata to the database
 	connection.query('INSERT INTO orders SET ?', req.body, function(err, result){
 		if (err) {
