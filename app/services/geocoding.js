@@ -10,5 +10,5 @@ app.factory('GeocodingService', function($http) {
 				console.log(result.status);
 			});
 		}
-	}
+	};
 });

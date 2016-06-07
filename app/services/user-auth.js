@@ -13,5 +13,5 @@ app.factory('UserAuthService', function($http, $cookies) {
 				return result.status;
 			});
 		}
-	}
+	};
 });

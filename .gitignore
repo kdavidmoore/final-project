@@ -1,4 +1,4 @@
 server/node_modules/*
 server/routes/secrets.js
-assets/js/mapboxApi.js
+app/constants/*
 .DS_Store

@@ -33,11 +33,11 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * HttpAbstractionService - provides functions that make $http get/post requests to the Node server
 
 ### A note on using the leaflet map:
-If you download the source code and attempt to run the app on your computer, you will need a public access token from Mapbox. Otherwise, the embedded maps (in progress) will not work. Store your access token under assets/js/mapboxApi.js like so:
+If you download the source code and attempt to run the app on your computer, you will need a public access token from Mapbox. Otherwise, the embedded maps (in progress) will not work. Store your access token under app/constants/mapbox.constant.js like so:
 ```javascript
 const pubAccessToken = 'myPublicAccessTokenString';
 ```
-When you create a Mapbox account, you will also need to go to the [Mapbox Editor](https://www.mapbox.com/studio/classic/projects/) and create a new project. Store the project ID in assets/js/mapboxApi.js:
+When you create a Mapbox account, you will also need to go to the [Mapbox Editor](https://www.mapbox.com/studio/classic/projects/) and create a new project. Store the project ID in app/constants/mapbox.constant.js:
 ```javascript
 const projectId = 'myMapboxEditorProjectId';
 ```
