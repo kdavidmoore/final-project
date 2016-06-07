@@ -9,11 +9,13 @@
 			<table class="table">
 				<tr>
 					<th>Sample type</th>
+					<th>Sample location</th>
 					<th>Submitted</th>
 					<th>Order status</th>
 				</tr>
 				<tr ng-repeat="item in orders">
 					<td><span style="text-transform: capitalize;">{{item.orderType}}</span></td>
+					<td><a ui-sref="map({ path: '{{item.id}}' })">Launch map</a></td>
 					<td>{{item.timestamp | date: "MM/dd/yyyy 'at' h:mm a"}}</td>
 					<td>{{item.orderStatus}}</td>
 				</tr>

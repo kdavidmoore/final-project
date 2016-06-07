@@ -1,4 +1,4 @@
-app.controller('servicesController', function($state, $scope, HttpAbstractionService) {
+app.controller('servicesController', ['$state', '$scope', 'HttpAbstractionService', function($state, $scope, HttpAbstractionService) {
 
 	HttpAbstractionService.getLabServices().then(function(data) {
 		// get a current list of services from the api
@@ -22,7 +22,7 @@ app.controller('servicesController', function($state, $scope, HttpAbstractionSer
 	}
 
 	$scope.autoFill = function(type) {
-	// for demonstration purposes, this function fills out the form with some dummy info
+		// for demonstration purposes, this function fills out the form with some dummy info
 		if (type == 'soil') {
 			$scope.formData =
 			{
@@ -47,4 +47,4 @@ app.controller('servicesController', function($state, $scope, HttpAbstractionSer
 			}
 		}
 	}
-});
+}]);

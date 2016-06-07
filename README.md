@@ -26,11 +26,11 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * Node.js [module](https://stripe.com/docs/libraries) for Stripe
 * [Nodemailer](http://nodemailer.com/)
 
-### Custom AngularJS Services
-* UserAuthService - provides a function to check the token stored in $cookies against the token stored in the MySQL database by making an $http POST request to the backend
-* HttpAbstractionService - provides functions that make $http get/post requests to the backend
+### Custom AngularJS services
+* UserAuthService - provides a function to make sure that the token stored in $cookies is also stored in the MySQL database
+* HttpAbstractionService - provides functions that make $http get/post requests to the Node server
 
-### Note:
+### A note on using the leaflet map:
 If you download the source code and attempt to run the app on your computer, you will need a public access token from Mapbox. Otherwise, the embedded maps (in progress) will not work. Store your access token under assets/js/mapboxApi.js like so:
 ```javascript
 const pubAccessToken = 'myPublicAccessTokenString';
@@ -40,14 +40,17 @@ When you create a Mapbox account, you will also need to go to the [Mapbox Editor
 const projectId = 'myMapboxEditorProjectId';
 ```
 
-### Also note:
-Nodemailer will not work without a valid "from" email address and password. You can use Google, Yahoo, etc., but you will either use [OAuth2 authentication](https://nodemailer.com/using-gmail/), or modify security settings on your email account to allow "Less Secure" apps. Insert your username and password into /server/routes/secrets.js:
+### A note on using Nodemailer, Stripe, and MySQL:
+Nodemailer will not work without a valid "from" email address and password. You can use Google, Yahoo, etc., but you will need to use either [OAuth2 authentication](https://nodemailer.com/using-gmail/), or modify your email account's security settings to allow "Less Secure" apps. Store your username and password in /server/routes/secrets.js, along with your Stripe key and MySQL login info:
 ```javascript
 module.exports = {
 	getSecrets: function() {
 		return {
-			FROM_ADDRESS: 'myEmailAddress',
-			FROM_PASS: 'myAccountPassword'
+			STRIPE_KEY: 'my_stripe_test_key',
+			DB_USER: 'my_mysql_username',
+			DB_PASSWORD: 'my_mysql_password',
+			FROM_ADDRESS: 'my_email_address',
+			FROM_PASS: 'my_email_password'
 		};
 	}
 };

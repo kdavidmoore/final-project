@@ -1,3 +1,3 @@
-app.controller('logoutController', function($cookies) {
+app.controller('logoutController', ['$cookies', function($cookies) {
 	$cookies.remove('token', { 'path': '/' });
-});
+}]);

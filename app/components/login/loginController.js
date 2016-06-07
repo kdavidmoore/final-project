@@ -1,4 +1,4 @@
-app.controller('loginController', function($state, $scope, $http, $cookies, UserAuthService) {
+app.controller('loginController', ['$state', '$scope', '$http', '$cookies', 'UserAuthService', function($state, $scope, $http, $cookies, UserAuthService) {
 	// if the user is already logged in, send them on to the services page
 	UserAuthService.checkToken().then(function(data) {
 		if (data.success == "validated") {
@@ -32,5 +32,5 @@ app.controller('loginController', function($state, $scope, $http, $cookies, User
 		}, function errorCallback(response) {
 			console.log(response.status);
 		});
-	};
-});
+	}
+}]);

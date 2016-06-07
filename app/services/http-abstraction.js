@@ -65,8 +65,21 @@ app.factory('HttpAbstractionService', function($http, $cookies) {
 				username: user
 			}
 		}).then(function successCallback(result) {
-			console.log(result.data);
 			return result.data;
+		}, function errorCallback(result) {
+			return result.status;
+		});
+	}
+
+	function getSampleLocation(id) {
+		return $http({
+			method: 'POST',
+			url: API_URL + '/getSampleLocation',
+			data: {
+				orderId: id
+			}
+		}).then(function successCallback(result) {
+			return result.data.orderData;
 		}, function errorCallback(result) {
 			return result.status;
 		});
@@ -77,6 +90,7 @@ app.factory('HttpAbstractionService', function($http, $cookies) {
 		getUsername: getUsername,
 		postFormData: postFormData,
 		getOrderId: getOrderId,
-		getOrders: getOrders
-	}
+		getOrders: getOrders,
+		getSampleLocation: getSampleLocation
+	};
 });

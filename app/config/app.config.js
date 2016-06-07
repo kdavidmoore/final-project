@@ -43,7 +43,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	})
 	.state('services.service', {
 		url: "/*path",
-		templateUrl: function ($stateParams){
+		templateUrl: function ($stateParams) {
 			// build the templateUrl (the html that is loaded into the view) based on
 			// the path variable (passed into the state from the link that was clicked on)
 			return 'app/components/services/' + $stateParams.path + 'FormView.html';
@@ -58,7 +58,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl: "app/components/orders/ordersView.html"
 	})
 	.state('map', {
-		url: "/map",
+		url: "/map/*path",
 		templateUrl: "app/components/map/mapView.html"
 	})
 	.state('logout', {

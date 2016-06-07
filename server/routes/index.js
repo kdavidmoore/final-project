@@ -16,8 +16,8 @@ function sendReceipt(orderId, sendToAddress) {
 	});
 
 	var emailBody = '<p>Dear customer,</p>' +
-					'<p>Thank you for your recent sample submission.</p>' +
-					'<p>Your order ID is: ' + orderId + '</p>' +
+					'<p>Thank you for your recent sample submission.&nbsp;' +
+					'Your order ID is: ' + orderId + '</p>' +
 					'<p>Sincerely,</p>' +
 					'<p><a href="http://kdavidmoore.com">ABC Cooperative Extension</a></p>';
 	var mailOptions = {
@@ -56,7 +56,7 @@ router.post('/checkToken', function(req, res, next) {
 	if (req.body.token == undefined) {
 		res.json({ failure: 'noToken' });
 	} else {
-		connection.query('SELECT * FROM `accounts` WHERE `token` = ?', [req.body.token],
+		connection.query('SELECT * FROM accounts WHERE token = ?', [req.body.token],
 			function(err, results, fields) {
 				if (err) {
 					throw err;
@@ -71,11 +71,10 @@ router.post('/checkToken', function(req, res, next) {
 
 
 router.post('/getUsername', function(req, res, next) {
-
 	if (req.body.token == undefined) {
 		res.json({ failure: 'noToken' });
 	} else {
-		connection.query('SELECT `username` FROM `accounts` WHERE `token` = ?', [req.body.token],
+		connection.query('SELECT username FROM accounts WHERE token = ?', [req.body.token],
 			function(err, results, fields) {
 				if (err) {
 					throw err;
@@ -90,8 +89,7 @@ router.post('/getUsername', function(req, res, next) {
 
 
 router.get('/getLabServices', function(req, res, next) {
-
-	connection.query('SELECT * FROM `services` ORDER BY `serviceType`', function(err, results, fields) {
+	connection.query('SELECT * FROM services ORDER BY serviceType', function(err, results, fields) {
 		if (err) {
 			throw err;
 		} else {
@@ -102,7 +100,6 @@ router.get('/getLabServices', function(req, res, next) {
 
 
 router.post('/register', function(req, res, next) {
-
 	var salt = bcrypt.genSaltSync(10);
 	var token = randtoken.generate(32);
 	var newUser = {
@@ -112,14 +109,14 @@ router.post('/register', function(req, res, next) {
 		token: token
 	}
 
-	connection.query('SELECT * FROM `accounts` WHERE `username` = ?', [newUser.username],
+	connection.query('SELECT * FROM  accounts  WHERE  username  = ?', [newUser.username],
 		function(err, results, fields) {
 			if (err) {
 				throw err;
 			} else if (results.length > 0) {
 				res.json({ failure: 'notUnique' });
 			} else {
-				connection.query('INSERT INTO `accounts` SET ?', newUser, function(err, result) {
+				connection.query('INSERT INTO accounts SET ?', newUser, function(err, result) {
 					if (err) {
 						throw err;
 					} else {
@@ -135,8 +132,7 @@ router.post('/register', function(req, res, next) {
 
 
 router.post('/login', function(req, res, next) {
-
-	connection.query('SELECT * FROM `accounts` WHERE `username` = ?', [req.body.username],
+	connection.query('SELECT * FROM  accounts WHERE username = ?', [req.body.username],
 		function(err, results, fields) {
 			if (err) {
 				throw err;
@@ -144,7 +140,7 @@ router.post('/login', function(req, res, next) {
 				var loginResult = bcrypt.compareSync(req.body.password, results[0].password);
 				if (loginResult) {
 					var token = randtoken.generate(32);
-					connection.query('UPDATE `accounts` SET `token` = ? WHERE `username` = ?',
+					connection.query('UPDATE accounts SET token  = ? WHERE username = ?',
 						[token, req.body.username], function(err, result) {
 						if (err) {
 							throw err;
@@ -168,7 +164,7 @@ router.post('/login', function(req, res, next) {
 
 router.post('/submitSampleForm', function(req, res, next) {
 	// when a sample submission form is posted, add the sample data/metadata to the database
-	connection.query('INSERT INTO `orders` SET ?', req.body, function(err, result){
+	connection.query('INSERT INTO orders SET ?', req.body, function(err, result){
 		if (err) {
 			throw err;
 		} else {
@@ -179,7 +175,7 @@ router.post('/submitSampleForm', function(req, res, next) {
 
 
 router.post('/getOrderId', function(req, res, next) {
-	connection.query('SELECT `id` FROM `orders` WHERE `token` = ? ORDER BY `timestamp` DESC', [req.body.token],
+	connection.query('SELECT id FROM orders WHERE token = ? ORDER BY timestamp DESC', [req.body.token],
 		function(err, results, fields) {
 			if (err) {
 				throw err;
@@ -194,20 +190,7 @@ router.post('/getOrderId', function(req, res, next) {
 });
 
 
-router.post('/getOrders', function(req, res, next) {
-	connection.query('SELECT timestamp, orderType, orderData, orderStatus FROM `orders` WHERE `username` = ?', [req.body.username],
-		function(err, results, fields) {
-		if (err) {
-			throw err;
-		} else {
-			res.json({ results });
-		}
-	})
-});
-
-
 router.post('/payment', function(req, res, next) {
-
 	stripe.charges.create({
 		amount: req.body.stripeAmount, // obtained with hidden input field
 		currency: 'usd',
@@ -217,7 +200,7 @@ router.post('/payment', function(req, res, next) {
 		if (err && err.type === 'StripeCardError') {
 			res.render('error', { message: 'There was a problem processing your Stripe payment.' });
 		} else {
-			connection.query('UPDATE `orders` SET `orderStatus` = ? WHERE `id` = ?',
+			connection.query('UPDATE orders SET orderStatus = ? WHERE id = ?',
 				['paid', req.body.orderId], function(err, result) {
 					if (err) {
 						throw err;
@@ -230,6 +213,31 @@ router.post('/payment', function(req, res, next) {
 					}
 			});
 		}
+	});
+});
+
+
+router.post('/getOrders', function(req, res, next) {
+	connection.query('SELECT id, timestamp, orderType, orderStatus FROM orders WHERE username = ?', [req.body.username],
+		function(err, results, fields) {
+			if (err) {
+				throw err;
+			} else {
+				res.json({ results });
+			}
+	});
+});
+
+
+router.post('/getSampleLocation', function(req, res, next) {
+	//var orderId = parseInt(req.body.orderId);
+	connection.query('SELECT orderData FROM orders WHERE id = ?', [req.body.orderId],
+		function(err, results, fields) {
+			if (err) {
+				throw err;
+			} else {
+				res.json({ orderData: results[0] });
+			}
 	});
 });
 
