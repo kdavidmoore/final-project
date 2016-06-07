@@ -3,10 +3,8 @@ var router = express.Router();
 var nodemailer = require('nodemailer');
 var bcrypt = require('bcrypt-nodejs');
 var randtoken = require('rand-token');
-var stripe = require('stripe')(
-	'pk_test_S1PLtt6vW1RchhitC9359CNc'
-);
 var secrets = require('./secrets');
+var stripe = require('stripe')(secrets.getSecrets().STRIPE_KEY);
 
 function sendReceipt(orderId, sendToAddress) {
 	var transporter = nodemailer.createTransport({
@@ -17,12 +15,16 @@ function sendReceipt(orderId, sendToAddress) {
 		}
 	});
 
-	var text = 'Your receipt for your recent order (#' + orderId + ')';
+	var emailBody = '<p>Dear customer,</p>' +
+					'<p>Thank you for your recent sample submission.</p>' +
+					'<p>Your order ID is: ' + orderId + '</p>' +
+					'<p>Sincerely,</p>' +
+					'<p><a href="http://kdavidmoore.com">ABC Cooperative Extension</a></p>';
 	var mailOptions = {
 		from: secrets.getSecrets().FROM_ADDRESS,
 		to: sendToAddress,
-		subject: 'Email example',
-		text: text
+		subject: 'Thanks for your recent sample submission',
+		html: emailBody
 	}
 
 	transporter.sendMail(mailOptions, function(err, info) {
@@ -38,8 +40,8 @@ function sendReceipt(orderId, sendToAddress) {
 var mysql = require('mysql');
 var connection = mysql.createConnection({
 	host: 'localhost',
-	user: 'test',
-	password: 'testPassword!!1',
+	user: secrets.getSecrets().DB_USER,
+	password: secrets.getSecrets().DB_PASSWORD,
 	database: 'final-project'
 });
 
