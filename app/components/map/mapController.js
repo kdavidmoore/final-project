@@ -12,8 +12,8 @@ app.controller('mapController', ['$state', '$window', '$scope', '$http', '$state
 
 				GeocodingService.lookupAddress(address).then(function(data) {
 					myLat = data.lat;
-					myLong = data.lng;
-					var myMap = $window.L.map('sample-loc-map').setView([myLat, myLong], 15);
+					myLng = data.lng;
+					var myMap = $window.L.map('sample-loc-map').setView([myLat, myLng], 15);
 					
 					$window.L.tileLayer('https://api.tiles.mapbox.com/v4/' + projectId + '/{z}/{x}/{y}.png?access_token=' + pubAccessToken, {
 						attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
@@ -22,8 +22,7 @@ app.controller('mapController', ['$state', '$window', '$scope', '$http', '$state
 						accessToken: pubAccessToken
 					}).addTo(myMap);
 
-					$window.L.marker([myLat, myLong]).addTo(myMap);
-
+					$window.L.marker([myLat, myLng]).addTo(myMap);
 				});
 			});
 		} else {

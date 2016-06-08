@@ -195,7 +195,6 @@ router.post('/login', function(req, res, next) {
 					res.json({ failure: 'noMatch' });
 				}
 			} else {
-				// if (!results)
 				res.json({ failure: 'noUser' });
 			}
 		});

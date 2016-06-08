@@ -14,7 +14,7 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * Sample submission forms are submitted to the server using a custom http abstraction service.
 * Nodemailer sends the user a confirmation email when order is complete and paid for.
 * User can view the status of each order (unpaid/paid) from the "View orders" page.
-* User can view the location of their samples on a map using a geocoding service.
+* User can view the location of their samples on a map using a Google Maps Geocoding API + Leaflet + Mapbox.
 
 ## Built with...
 * Bootstrap 3 (requires jQuery)
@@ -29,8 +29,10 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * [Nodemailer](http://nodemailer.com/)
 
 ### Custom AngularJS services
-* UserAuthService - provides a function to make sure that the token stored in $cookies is also stored in the MySQL database
-* HttpAbstractionService - provides functions that make $http get/post requests to the Node server
+* UserAuthService - makes an $http GET request to the Node server (i.e., the API) to make sure that the token stored in $cookies is also stored in the MySQL database.
+* GetRequestService - provides functions that make $http GET requests to the the API.
+* PostRequestService - provides functions that make $http POST requests to the API.
+* GeocodingService - makes an $http GET request to Google Maps Geocoding API to look up the geographic coordinates of the sample address.
 
 ### A note on using the leaflet map:
 If you download the source code and attempt to run the app on your computer, you will need a public access token from Mapbox. Otherwise, the embedded maps (in progress) will not work. Store your access token under app/constants/mapbox.constant.js like so:
