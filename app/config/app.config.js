@@ -34,7 +34,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 				$scope.errorMessage = "The username entered does not exist in our system.";
 			} else if ($stateParams.problem == "password") {
 				$scope.errorMessage = "The password entered does not match our records.";
-			} 
+			}
 		}
 	})
 	.state('services', {
@@ -47,6 +47,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			// build the templateUrl (the html that is loaded into the view) based on
 			// the path variable (passed into the state from the link that was clicked on)
 			return 'app/components/services/' + $stateParams.path + 'FormView.html';
+		}
+	})
+	.state('services.error', {
+		url: "/error/:problem",
+		templateUrl: "app/shared/error/errorView.html",
+		controller: function($stateParams, $scope) {
+			if ($stateParams.problem == "login") {
+				$scope.errorMessage = "You must be logged in to post a sample submission form.";
+			} else if ($stateParams.problem == "postingForm") {
+				$scope.errorMessage = "Something went wrong.";
+			}
 		}
 	})
 	.state('payment', {

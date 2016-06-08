@@ -1,23 +1,26 @@
-app.controller('servicesController', ['$state', '$scope', 'HttpAbstractionService', function($state, $scope, HttpAbstractionService) {
+app.controller('servicesController', ['$state', '$scope', '$cookies', 'UserAuthService', 'GetRequestService', 'PostRequestService',
+	function($state, $scope, $cookies, UserAuthService, GetRequestService, PostRequestService) {
 
-	HttpAbstractionService.getLabServices().then(function(data) {
+	GetRequestService.getLabServices().then(function(data) {
 		// get a current list of services from the api
 		$scope.services = data;
 	});
 
 	$scope.submitForm = function(formType) {
-		// first, make sure the token validates
-		// TODO...
-		HttpAbstractionService.getUsername().then(function(data) {
-			var username = data.username;
-			HttpAbstractionService.postSampleData(formType, username, $scope.formData).then(function(result) {
-				if (result.success == "added") {
-					$state.go('payment');
-				} else {
-					// display an error message in the view
-					// TODO...
-				}
-			})
+		UserAuthService.checkToken().then(function(data) {
+			if (data.success == "validated") {
+				GetRequestService.getUsername().then(function(data) {
+					PostRequestService.postSampleData(formType, data.username, $scope.formData).then(function(data) {
+						if (data == "ok") {
+							$state.go('payment');
+						} else {
+							$state.go('services.error', { problem: 'postingForm' });
+						}
+					});
+				});
+			} else {
+				$state.go('services.error', { problem: 'login' });
+			}
 		});
 	}
 
@@ -27,15 +30,15 @@ app.controller('servicesController', ['$state', '$scope', 'HttpAbstractionServic
 			$scope.formData =
 			{
 				location: "canola field",
-				address: "345 Flint Dr",
-				county: "Dougherty",
+				address: "3423 Piedmont Rd NE, Atlanta, GA 30305",
+				county: "Fulton",
 				canolaSpringType: 1
-			}
+			};
 		} else if (type == 'water') {
 			$scope.formData =
 			{
-				address: "123 Long Branch Rd",
-				county: "Baldwin",
+				address: "3423 Piedmont Rd NE, Atlanta, GA 30305",
+				county: "Fulton",
 				sampleType: "householdWell",
 				wellDepth: 25,
 				wellCasingDiam: 18,
@@ -44,7 +47,7 @@ app.controller('servicesController', ['$state', '$scope', 'HttpAbstractionServic
 				basicTest: 1,
 				lead: 1,
 				radon: 1
-			}
+			};
 		}
 	}
 }]);

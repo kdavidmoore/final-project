@@ -6,6 +6,16 @@ var randtoken = require('rand-token');
 var secrets = require('./secrets');
 var stripe = require('stripe')(secrets.getSecrets().STRIPE_KEY);
 
+// create a connection to the final-project database
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+	host: 'localhost',
+	user: secrets.getSecrets().DB_USER,
+	password: secrets.getSecrets().DB_PASSWORD,
+	database: 'final-project'
+});
+
+// this function only gets called in the payments route
 function sendReceipt(orderId, sendToAddress) {
 	var transporter = nodemailer.createTransport({
 		service: 'Yahoo',
@@ -36,27 +46,31 @@ function sendReceipt(orderId, sendToAddress) {
 	});
 }
 
-// create a connection to the final-project database
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-	host: 'localhost',
-	user: secrets.getSecrets().DB_USER,
-	password: secrets.getSecrets().DB_PASSWORD,
-	database: 'final-project'
-});
-
+/**************/
+/* GET routes */
+/**************/
 
 // home route is for testing purposes only
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
 });
 
+router.get('/getLabServices', function(req, res, next) {
+	connection.query('SELECT * FROM services ORDER BY serviceType', function(err, results, fields) {
+		if (err) {
+			throw err;
+		} else {
+			res.json({ results });
+		}
+	});
+});
 
-router.post('/checkToken', function(req, res, next) {
-	if (req.body.token == undefined) {
+router.get('/checkToken/:token', function(req, res, next) {
+	if (req.params.token == undefined) {
 		res.json({ failure: 'noToken' });
 	} else {
-		connection.query('SELECT * FROM accounts WHERE token = ?', [req.body.token],
+		// the database is updated with the current token each time the user logs in (see the /login route)
+		connection.query('SELECT * FROM accounts WHERE token = ?', [req.params.token],
 			function(err, results, fields) {
 				if (err) {
 					throw err;
@@ -69,12 +83,11 @@ router.post('/checkToken', function(req, res, next) {
 	}
 });
 
-
-router.post('/getUsername', function(req, res, next) {
-	if (req.body.token == undefined) {
+router.get('/getUsername/:token', function(req, res, next) {
+	if (req.params.token == undefined) {
 		res.json({ failure: 'noToken' });
 	} else {
-		connection.query('SELECT username FROM accounts WHERE token = ?', [req.body.token],
+		connection.query('SELECT username FROM accounts WHERE token = ?', [req.params.token],
 			function(err, results, fields) {
 				if (err) {
 					throw err;
@@ -87,29 +100,57 @@ router.post('/getUsername', function(req, res, next) {
 	}
 });
 
+router.get('/getOrderId/:token', function(req, res, next) {
+	connection.query('SELECT id FROM orders WHERE token = ? ORDER BY timestamp DESC', [req.params.token],
+		function(err, results, fields) {
+			if (err) {
+				throw err;
+			} else {
+				if (results.length > 0) {
+					res.json({ orderId: results[0].id });
+				} else {
+					res.json({ failure: 'problemGettingOrderId'});
+				}
+			}
+		});
+});
 
-router.get('/getLabServices', function(req, res, next) {
-	connection.query('SELECT * FROM services ORDER BY serviceType', function(err, results, fields) {
-		if (err) {
-			throw err;
-		} else {
-			res.json({ results });
-		}
+router.get('/getOrders/:user', function(req, res, next) {
+	connection.query('SELECT id, timestamp, orderType, orderStatus FROM orders WHERE username = ?', [req.params.user],
+		function(err, results, fields) {
+			if (err) {
+				throw err;
+			} else {
+				res.json({ results });
+			}
 	});
 });
 
+router.get('/getSampleLocation/:id', function(req, res, next) {
+	connection.query('SELECT orderData FROM orders WHERE id = ?', [req.params.id],
+		function(err, results, fields) {
+			if (err) {
+				throw err;
+			} else {
+				res.json({ orderData: results[0] });
+			}
+	});
+});
+
+/***************/
+/* POST routes */
+/***************/
 
 router.post('/register', function(req, res, next) {
-	var salt = bcrypt.genSaltSync(10);
 	var token = randtoken.generate(32);
 	var newUser = {
 		username: req.body.username,
-		password: bcrypt.hashSync(req.body.password, salt),
+		password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
 		email: req.body.email,
 		token: token
-	}
+	};
 
-	connection.query('SELECT * FROM  accounts  WHERE  username  = ?', [newUser.username],
+	connection.query('SELECT * FROM accounts WHERE username = ?', [newUser.username],
 		function(err, results, fields) {
 			if (err) {
 				throw err;
@@ -130,9 +171,8 @@ router.post('/register', function(req, res, next) {
 		});
 });
 
-
 router.post('/login', function(req, res, next) {
-	connection.query('SELECT * FROM  accounts WHERE username = ?', [req.body.username],
+	connection.query('SELECT * FROM accounts WHERE username = ?', [req.body.username],
 		function(err, results, fields) {
 			if (err) {
 				throw err;
@@ -161,7 +201,6 @@ router.post('/login', function(req, res, next) {
 		});
 });
 
-
 router.post('/postSampleData', function(req, res, next) {
 	// when a sample submission form is posted, add the sample data/metadata to the database
 	connection.query('INSERT INTO orders SET ?', req.body, function(err, result){
@@ -172,23 +211,6 @@ router.post('/postSampleData', function(req, res, next) {
 		}
 	});
 });
-
-
-router.post('/getOrderId', function(req, res, next) {
-	connection.query('SELECT id FROM orders WHERE token = ? ORDER BY timestamp DESC', [req.body.token],
-		function(err, results, fields) {
-			if (err) {
-				throw err;
-			} else {
-				if (results.length > 0) {
-					res.json({ orderId: results[0].id });
-				} else {
-					res.json({ failure: 'problemGettingOrderId'});
-				}
-			}
-		});
-});
-
 
 router.post('/payment', function(req, res, next) {
 	stripe.charges.create({
@@ -213,31 +235,6 @@ router.post('/payment', function(req, res, next) {
 					}
 			});
 		}
-	});
-});
-
-
-router.post('/getOrders', function(req, res, next) {
-	connection.query('SELECT id, timestamp, orderType, orderStatus FROM orders WHERE username = ?', [req.body.username],
-		function(err, results, fields) {
-			if (err) {
-				throw err;
-			} else {
-				res.json({ results });
-			}
-	});
-});
-
-
-router.post('/getSampleLocation', function(req, res, next) {
-	//var orderId = parseInt(req.body.orderId);
-	connection.query('SELECT orderData FROM orders WHERE id = ?', [req.body.orderId],
-		function(err, results, fields) {
-			if (err) {
-				throw err;
-			} else {
-				res.json({ orderData: results[0] });
-			}
 	});
 });
 
