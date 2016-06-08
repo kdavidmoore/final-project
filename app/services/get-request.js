@@ -55,8 +55,6 @@ app.factory('GetRequestService', function($http, $cookies) {
 		});
 	}
 
-	
-
 	return {
 		getLabServices: getLabServices,
 		getUsername: getUsername,

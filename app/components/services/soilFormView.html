@@ -15,52 +15,91 @@
 					<label for="county" class="control-label">County</label>
 					<input type="text" id="county" class="form-control" ng-model="formData.county" placeholder="" ng-minlength="2" ng-maxlength="20">
 				</div>
-				<h4>Crop Code</h4>
+				<h4>Crop Codes</h4>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.canolaSpringType" ng-true-value="1" ng-false-value="0">
-						701 - Canola - spring type
+						<input type="checkbox" ng-model="formData.fieldCrops" ng-true-value="1" ng-false-value="0">
+						Field crops
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.canolaWinterType" ng-true-value="1" ng-false-value="0">
-						702 - Canola - winter type
+						<input type="checkbox" ng-model="formData.pastureCrops" ng-true-value="1" ng-false-value="0">
+						Pasture crops / hay
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.corn001" ng-true-value="1" ng-false-value="0">
-						001 - Corn (for grain) - dryland
+						<input type="checkbox" ng-model="formData.xmasTrees" ng-true-value="1" ng-false-value="0">
+						Pine trees, field nursery stock, and Christmas trees
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.corn002" ng-true-value="1" ng-false-value="0">
-						002 - Corn (for grain) - irrigated 150 bu/a
+						<input type="checkbox" ng-model="formData.berries" ng-true-value="1" ng-false-value="0">
+						Blackberries and pecans
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.cornC01" ng-true-value="1" ng-false-value="0">
-						C01 - Corn (for grain) - irrigated 200 bu/a
+						<input type="checkbox" ng-model="formData.veggies" ng-true-value="1" ng-false-value="0">
+						Vegetables
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.cornC02" ng-true-value="1" ng-false-value="0">
-						C02 - Corn (for grain) - irrigated 250 bu/a
+						<input type="checkbox" ng-model="formData.sod" ng-true-value="1" ng-false-value="0">
+						Sod production
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" ng-model="formData.cornC03" ng-true-value="1" ng-false-value="0">
-						C03 - Corn (for grain) - irrigated 300 bu/a
+						<input type="checkbox" ng-model="formData.flowers" ng-true-value="1" ng-false-value="0">
+						Ornamentals and flowers (nursery field production)
 					</label>
 				</div>
-				
-				<input type="hidden" ng-model="username" value="kdmoore">
-				<input type="hidden" ng-model="orderType" value="soil">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.golf" ng-true-value="1" ng-false-value="0">
+						Golf course
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.industrialLawn" ng-true-value="1" ng-false-value="0">
+						Industrial/business lawn
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.otherTurf" ng-true-value="1" ng-false-value="0">
+						Other turf
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.homeLawns" ng-true-value="1" ng-false-value="0">
+						Home lawn
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.homeLandscape" ng-true-value="1" ng-false-value="0">
+						Home landscape plants
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.homeGarden" ng-true-value="1" ng-false-value="0">
+						Home garden
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.wildlife" ng-true-value="1" ng-false-value="0">
+						Wildlife plots
+					</label>
+				</div>
 
 				<div class="button-holder">
 					<button type="submit" class="btn btn-success">Submit</button>

@@ -32,7 +32,7 @@ app.controller('servicesController', ['$state', '$scope', '$cookies', 'UserAuthS
 				location: "canola field",
 				address: "3423 Piedmont Rd NE, Atlanta, GA 30305",
 				county: "Fulton",
-				canolaSpringType: 1
+				homeGarden: 1
 			};
 		} else if (type == 'water') {
 			$scope.formData =

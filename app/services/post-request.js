@@ -15,11 +15,11 @@ app.factory('PostRequestService', function($http, $cookies) {
 				expDate.setDate(expDate.getTime() + (30 * 60000));
 				// get a token back from the API and store it inside cookies with an expiration date of 30 minutes from now
 				$cookies.put('token', result.data.token, { 'path': '/', 'expires': expDate });
-				return "success";
+				return 'success';
 			} else if (result.data.failure == 'notUnique') {
-				return "usernameExists";
+				return 'usernameExists';
 			} else {
-				return "someProblem";
+				return 'someProblem';
 			}
 		}, function errorCallback(result) {
 			return result.status;
@@ -36,17 +36,17 @@ app.factory('PostRequestService', function($http, $cookies) {
 			}
 		}).then(function successCallback(result) {
 			if (result.data.failure == 'noMatch') {
-				return "passwordError";
+				return 'passwordError';
 			} else if (result.data.failure == 'noUser') {
-				return "userError";
+				return 'userError';
 			} else if (result.data.success == 'match') {
 				var expDate = new Date();
   				expDate.setDate(expDate.getTime() + (30 * 60000));
 				// store the token inside cookies with an expiration date of 30 minutes from now
 				$cookies.put('token', result.data.token, { 'path': '/', 'expires': expDate });
-				return "success";
+				return 'success';
 			} else {
-				return "someProblem";
+				return 'someProblem';
 			}
 		}, function errorCallback(result) {
 			return result.status;
