@@ -14,7 +14,7 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * Sample submission forms are submitted to the server using a custom http abstraction service.
 * Nodemailer sends the user a confirmation email when order is complete and paid for.
 * User can view the status of each order (unpaid/paid) from the "View orders" page.
-* User can view the location of their samples on a map using a Google Maps Geocoding API + Leaflet + Mapbox.
+* User can view the location of their samples on a map using Google Maps Geocoding API + Leaflet + Mapbox.
 
 ## Built with...
 * Bootstrap 3 (requires jQuery)
@@ -34,15 +34,16 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * PostRequestService - provides functions that make $http POST requests to the API.
 * GeocodingService - makes an $http GET request to Google Maps Geocoding API to look up the geographic coordinates of the sample address.
 
-### A note on using the leaflet map:
-If you download the source code and attempt to run the app on your computer, you will need a public access token from Mapbox. Otherwise, the embedded maps (in progress) will not work. Store your access token under app/constants/mapbox.constant.js like so:
+### A note on using the Leaflet map:
+If you download the source code and attempt to run the app on your computer, you will need a public access token from Mapbox. Otherwise, the embedded maps will not work. Store your access token under /app/constants/mapbox.constant.js like so:
 ```javascript
-const pubAccessToken = 'myPublicAccessTokenString';
+const MAPBOX_ACCESS_TOKEN = 'my_public_access_token';
 ```
-When you create a Mapbox account, you will also need to go to the [Mapbox Editor](https://www.mapbox.com/studio/classic/projects/) and create a new project. Store the project ID in app/constants/mapbox.constant.js:
+When you create a Mapbox account, you will also need to go to the [Mapbox Editor](https://www.mapbox.com/studio/classic/projects/) and create a new project. Store the project ID in /app/constants/mapbox.constant.js:
 ```javascript
-const projectId = 'myMapboxEditorProjectId';
+const MAPBOX_PROJECT_ID = 'my_mapbox_editor_project_id';
 ```
+Similarly, Google Maps Geocoding API also requires an API key, which can be stored in /app/constants/google-maps.constant.js.
 
 ### A note on using Nodemailer, Stripe, and MySQL:
 Nodemailer will not work without a valid "from" email address and password. You can use Google, Yahoo, etc., but you will need to use either [OAuth2 authentication](https://nodemailer.com/using-gmail/), or modify your email account's security settings to allow "Less Secure" apps. Store your username and password in /server/routes/secrets.js, along with your Stripe key and MySQL login info:

@@ -1,5 +1,5 @@
-app.controller('mapController', ['$state', '$window', '$scope', '$http', '$stateParams', 'UserAuthService', 'GetRequestService', 'GeocodingService',
-	function($state, $window, $scope, $http, $stateParams, UserAuthService, GetRequestService, GeocodingService) {
+app.controller('mapController', ['$state', '$window', '$scope', '$stateParams', 'UserAuthService', 'GetRequestService', 'GeocodingService',
+	function($state, $window, $scope, $stateParams, UserAuthService, GetRequestService, GeocodingService) {
 	
 	var myLat = 32.062;
 	var myLong = -84.924;
@@ -15,11 +15,11 @@ app.controller('mapController', ['$state', '$window', '$scope', '$http', '$state
 					myLng = data.lng;
 					var myMap = $window.L.map('sample-loc-map').setView([myLat, myLng], 15);
 					
-					$window.L.tileLayer('https://api.tiles.mapbox.com/v4/' + projectId + '/{z}/{x}/{y}.png?access_token=' + pubAccessToken, {
+					$window.L.tileLayer('https://api.tiles.mapbox.com/v4/' + MAPBOX_PROJECT_ID + '/{z}/{x}/{y}.png?access_token=' + MAPBOX_ACCESS_TOKEN, {
 						attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
 						maxZoom: 18,
-						id: projectId,
-						accessToken: pubAccessToken
+						id: MAPBOX_PROJECT_ID,
+						accessToken: MAPBOX_ACCESS_TOKEN
 					}).addTo(myMap);
 
 					$window.L.marker([myLat, myLng]).addTo(myMap);
