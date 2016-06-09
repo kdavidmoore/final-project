@@ -244,12 +244,9 @@ router.post('/results', function(req, res, next) {
 		if (err) {
 			throw err;
 		} else if (results.length > 0) {
-			console.log("sending back existing results");
-			console.log(JSON.parse(results[0].results));
 			// send back the results from the database
 			res.json({ results: JSON.parse(results[0].results) });
 		} else {
-			console.log("creating new results");
 			// if no results are found, generate new results
 			var newResults = [];
 			for (var i=0; i<req.body.options.length; i++) {

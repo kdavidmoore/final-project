@@ -10,6 +10,7 @@ app.controller('resultsController', ['$state', '$scope', '$stateParams', 'UserAu
 					var parsedData = JSON.parse(data.orderData);
 					var chosenOptions = [];
 					for (key in parsedData) {
+						// wow this is bad
 						if (key !== "address" && key !== "county" && key !== "sampleType" && key !== "wellDepth" && key !== "wellCasingDiam" && key !== "endUse" && key !== "testReasons") {
 							if (parsedData[key] == 1) {
 								chosenOptions.push(key);
@@ -17,15 +18,15 @@ app.controller('resultsController', ['$state', '$scope', '$stateParams', 'UserAu
 						}
 					}
 					$scope.options = chosenOptions;
-					
+					$scope.note = "All values expressed as parts per billion (ppb) except pH.";
 					// take the chosen options and generate random results
-					ResultsService.genResults($stateParams.id, $stateParams.type, chosenOptions).then(function(data) {
+					ResultsService.genResults($stateParams.id, $stateParams.type, $scope.options).then(function(data) {
 						$scope.results = data.results;
 					});
 				});
 			} else {
 				// generate a standard set of options for a soil test
-				$scope.options = ["N", "P", "K", "pH", "Electrical conductivity"];
+				$scope.options = ["Nitrate (ppm)", "Phosphate (ppm)", "Potassium (ppm)", "pH", "Electrical conductivity (µS/cm)"];
 				ResultsService.genResults($stateParams.id, $stateParams.type, $scope.options).then(function(data) {
 					$scope.results = data.results;
 				});

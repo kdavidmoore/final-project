@@ -4,29 +4,30 @@ a:hover {
 }
 
 /* line 5, ../libs/compass/sass/_shared.scss */
+.outer-wrapper {
+  min-height: calc(100vh - 40px);
+}
+
+/* line 9, ../libs/compass/sass/_shared.scss */
 .content-wrapper {
   padding-top: 60px;
 }
 
-/* line 9, ../libs/compass/sass/_shared.scss */
+/* line 13, ../libs/compass/sass/_shared.scss */
 .button-holder {
   padding: 10px 0 20px 0;
 }
 
-/* line 13, ../libs/compass/sass/_shared.scss */
+/* line 17, ../libs/compass/sass/_shared.scss */
 .fake-button {
   min-width: 120px;
   margin-left: 5px;
 }
 
-/* line 18, ../libs/compass/sass/_shared.scss */
-.footer {
-  padding: 10px 0 10px 0;
-}
-
 /* line 22, ../libs/compass/sass/_shared.scss */
-th {
-  text-transform: capitalize;
+.footer {
+  height: 40px;
+  padding-top: 10px;
 }
 
 /* line 1, ../libs/compass/sass/_navbar.scss */

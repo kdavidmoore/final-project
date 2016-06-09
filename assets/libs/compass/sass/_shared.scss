@@ -2,6 +2,10 @@ a:hover {
 	cursor: pointer;
 }
 
+.outer-wrapper {
+    min-height: calc(100vh - 40px);
+}
+
 .content-wrapper {
 	padding-top: 60px;
 }
@@ -16,9 +20,6 @@ a:hover {
 }
 
 .footer {
-	padding: 10px 0 10px 0;
-}
-
-th {
-	text-transform: capitalize;
+	height: 40px;
+	padding-top: 10px;
 }
