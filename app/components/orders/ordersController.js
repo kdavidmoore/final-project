@@ -1,4 +1,5 @@
-app.controller('ordersController', ['$state', '$scope', 'UserAuthService', 'GetRequestService', function($state, $scope, UserAuthService, GetRequestService) {
+app.controller('ordersController', ['$state', '$scope', 'UserAuthService', 'GetRequestService',
+	function($state, $scope, UserAuthService, GetRequestService) {
 	UserAuthService.checkToken().then(function(data) {
 		if (data.success == "validated") {
 			GetRequestService.getUsername().then(function(data) {

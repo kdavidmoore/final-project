@@ -68,9 +68,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url: "/orders",
 		templateUrl: "app/components/orders/ordersView.html"
 	})
+	.state('results', {
+		url: "/results/:type/:id",
+		templateUrl: "app/components/results/resultsView.html"
+	})
 	.state('map', {
 		url: "/map/*path",
 		templateUrl: "app/components/map/mapView.html"
+	})
+	.state('map.error', {
+		url: "/error",
+		templateUrl: "app/shared/error/errorView.html",
+		controller: function($stateParams, $scope) {
+			if ($stateParams.problem == "geocoding") {
+				$scope.errorMessage = "The geocoding service was unable to look up the requested address.";
+			}
+		}
 	})
 	.state('logout', {
 		url: "/logout",

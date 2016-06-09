@@ -7,7 +7,7 @@ app.factory('GeocodingService', function($http) {
 			}).then(function successCallback(result) {
 				return result.data.results[0].geometry.location;
 			}, function errorCallback(result) {
-				console.log(result.status);
+				return "error";
 			});
 		}
 	};

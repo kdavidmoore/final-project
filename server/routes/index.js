@@ -126,7 +126,7 @@ router.get('/getOrders/:user', function(req, res, next) {
 	});
 });
 
-router.get('/getSampleLocation/:id', function(req, res, next) {
+router.get('/getOrderData/:id', function(req, res, next) {
 	connection.query('SELECT orderData FROM orders WHERE id = ?', [req.params.id],
 		function(err, results, fields) {
 			if (err) {

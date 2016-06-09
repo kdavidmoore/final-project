@@ -47,7 +47,7 @@ app.factory('GetRequestService', function($http, $cookies) {
 	function getSampleLocation(id) {
 		return $http({
 			method: 'GET',
-			url: API_URL + '/getSampleLocation/' + id
+			url: API_URL + '/getOrderData/' + id
 		}).then(function successCallback(result) {
 			return result.data.orderData;
 		}, function errorCallback(result) {

@@ -1,0 +1,19 @@
+<div class="container content-wrapper" ng-controller="resultsController">
+	<div class="row">
+		<div class="col-sm-12 col-md-2">
+			<h1>Results</h1>
+			<h5>View your test results</h5>
+		</div>
+
+		<div class="col-sm-12 col-md-10">
+			<h3>Order ID: {{orderId}}</h3>
+			<h5>Sample type: {{orderType}}</h5>
+			<h5>Order options:</h5>
+			<ul>
+				<li ng-repeat="option in options">
+					{{option}}
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

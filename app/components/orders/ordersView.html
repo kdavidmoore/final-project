@@ -1,7 +1,7 @@
 <div class="container content-wrapper" ng-controller="ordersController">
 	<div class="row">
 		<div class="col-sm-12 col-md-2">
-			<h1>View orders</h1>
+			<h1>Orders</h1>
 			<h5>View the status of your submitted samples</h5>
 		</div>
 
@@ -12,12 +12,14 @@
 					<th>Sample location</th>
 					<th>Submitted</th>
 					<th>Order status</th>
+					<th>Results</th>
 				</tr>
 				<tr ng-repeat="item in orders">
 					<td><span style="text-transform: capitalize;">{{item.orderType}}</span></td>
 					<td><a ui-sref="map({ path: '{{item.id}}' })">Launch map</a></td>
 					<td>{{item.timestamp | date: "MM/dd/yyyy 'at' h:mm a"}}</td>
 					<td>{{item.orderStatus}}</td>
+					<td><a ui-sref="results({ type: '{{item.orderType}}', id: '{{item.id}}' })" ng-show="item.orderStatus == 'paid'">View results</a></td>
 				</tr>
 			</table>
 		</div>
