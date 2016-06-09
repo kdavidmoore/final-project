@@ -24,6 +24,11 @@ a:hover {
   padding: 10px 0 10px 0;
 }
 
+/* line 22, ../libs/compass/sass/_shared.scss */
+th {
+  text-transform: capitalize;
+}
+
 /* line 1, ../libs/compass/sass/_navbar.scss */
 .brand-img {
   width: 30px;

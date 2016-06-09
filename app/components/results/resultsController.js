@@ -1,12 +1,12 @@
-app.controller('resultsController', ['$state', '$scope', '$stateParams', 'UserAuthService', 'GenerateResultsService',
-	function($state, $scope, $stateParams, UserAuthService, GenerateResultsService) {
+app.controller('resultsController', ['$state', '$scope', '$stateParams', 'UserAuthService', 'ResultsService',
+	function($state, $scope, $stateParams, UserAuthService, ResultsService) {
 	UserAuthService.checkToken().then(function(data) {
 		if (data.success == "validated") {
 			$scope.orderId = $stateParams.id;
 			$scope.orderType = $stateParams.type;
 			// get results for selected order
 			if ($stateParams.type == "water") {
-				GenerateResultsService.getOrderData($stateParams.id).then(function(data) {
+				ResultsService.getOrderData($stateParams.id).then(function(data) {
 					var parsedData = JSON.parse(data.orderData);
 					var chosenOptions = [];
 					for (key in parsedData) {
@@ -17,11 +17,19 @@ app.controller('resultsController', ['$state', '$scope', '$stateParams', 'UserAu
 						}
 					}
 					$scope.options = chosenOptions;
-					// TODO: take the chosen options and generate random results
-
+					
+					// take the chosen options and generate random results
+					ResultsService.genResults($stateParams.id, $stateParams.type, chosenOptions).then(function(data) {
+						$scope.results = data.results;
+					});
 				});
 			} else {
-				$scope.options = ["standard soil test"];
+				// generate a standard set of options for a soil test
+				$scope.options = ["N", "P", "K", "pH", "Electrical conductivity"];
+				ResultsService.genResults($stateParams.id, $stateParams.type, $scope.options).then(function(data) {
+					$scope.results = data.results;
+				});
+
 			}
 		} else {
 			$state.go('login');

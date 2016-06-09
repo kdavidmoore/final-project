@@ -237,4 +237,37 @@ router.post('/payment', function(req, res, next) {
 	});
 });
 
+router.post('/results', function(req, res, next) {
+	var id = req.body.orderId;
+	connection.query('SELECT results FROM results WHERE orderId = ?', [id],
+		function(err, results, fields) {
+		if (err) {
+			throw err;
+		} else if (results.length > 0) {
+			console.log("sending back existing results");
+			console.log(JSON.parse(results[0].results));
+			// send back the results from the database
+			res.json({ results: JSON.parse(results[0].results) });
+		} else {
+			console.log("creating new results");
+			// if no results are found, generate new results
+			var newResults = [];
+			for (var i=0; i<req.body.options.length; i++) {
+				newResults.push(Math.random() * 10);
+			}
+			var resultsObj = {
+				results: newResults
+			}
+			connection.query('INSERT INTO results SET orderId = ?, orderType = ?, results = ?',
+				[id, req.body.orderType, JSON.stringify(resultsObj)], function(err, result){
+				if (err) {
+					throw err;
+				} else {
+					res.json({ results: newResults });
+				}
+			});
+		}
+	});
+});
+
 module.exports = router;

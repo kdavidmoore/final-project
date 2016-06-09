@@ -77,7 +77,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl: "app/components/map/mapView.html"
 	})
 	.state('map.error', {
-		url: "/error",
+		url: "/error/:problem",
 		templateUrl: "app/shared/error/errorView.html",
 		controller: function($stateParams, $scope) {
 			if ($stateParams.problem == "geocoding") {

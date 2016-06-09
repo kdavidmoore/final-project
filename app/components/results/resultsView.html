@@ -8,12 +8,14 @@
 		<div class="col-sm-12 col-md-10">
 			<h3>Order ID: {{orderId}}</h3>
 			<h5>Sample type: {{orderType}}</h5>
-			<h5>Order options:</h5>
-			<ul>
-				<li ng-repeat="option in options">
-					{{option}}
-				</li>
-			</ul>
+			<table class="table">
+				<tr>
+					<th ng-repeat="opt in options">{{opt}}</th>
+				</tr>
+				<tr>
+					<td ng-repeat="result in results">{{result | number: 2}}</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </div>
