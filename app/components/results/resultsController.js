@@ -20,19 +20,21 @@ app.controller('resultsController', ['$state', '$scope', '$stateParams', 'UserAu
 						}
 					}
 					// update the table header labels using the array we generated
-					$scope.options = chosenOptions;
+					$scope.labels = chosenOptions;
 					$scope.note = "All values expressed as parts per billion (ppb) except pH.";
 					// take the chosen options and generate random results
 					ResultsService.genResults($stateParams.id, $stateParams.type, $scope.options).then(function(data) {
-						$scope.results = data.results;
+						//$scope.results = data.results;
+						$scope.data = [ data.results ];
 					});
 				});
 			} else {
 				// generate table headers for the soil test results
-				$scope.options = ["Nitrate (ppm)", "Phosphate (ppm)", "Potassium (ppm)", "pH", "Electrical conductivity (mS/cm)"];
+				$scope.labels = ["Nitrate (ppm)", "Phosphate (ppm)", "Potassium (ppm)", "pH", "Electrical conductivity (mS/cm)"];
 				// generate random results from the standard test options
 				ResultsService.genResults($stateParams.id, $stateParams.type, $scope.options).then(function(data) {
-					$scope.results = data.results;
+					//$scope.results = data.results;
+					$scope.data = [ data.results ];
 				});
 			}
 		} else {

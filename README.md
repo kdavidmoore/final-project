@@ -16,15 +16,16 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * Nodemailer sends the user a confirmation email when order is complete and paid for.
 * User can view the status of each order (unpaid/paid) from the "View orders" page.
 * User can view the location of their samples on a map using Google Maps Geocoding API + Leaflet + Mapbox.
-* If the order status is "paid", the user can view results for each order.
+* If the order status is "paid", the user can view results for each order using Angular Chart
 
 ## Built with
 * Bootstrap 3 (requires jQuery)
 * [Compass](http://compass-style.org/)
-* [Leaflet.js](http://leafletjs.com/)
-* [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start#sample-request)
 * AngularJS v1.5.5
 * [AngularUI Router](https://github.com/angular-ui/ui-router)
+* [Leaflet.js](http://leafletjs.com/)
+* [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start#sample-request)
+* [Angular Chart](https://jtblin.github.io/angular-chart.js/) (requires Chart.js)
 * [Express](http://expressjs.com/)
 * Node.js [driver](https://www.npmjs.com/package/mysql) for MySQL
 * Node.js [module](https://stripe.com/docs/libraries) for Stripe

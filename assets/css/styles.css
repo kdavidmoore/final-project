@@ -127,5 +127,5 @@ a:hover {
 
 /* line 1, ../libs/compass/sass/_map.scss */
 #sample-loc-map {
-  height: 400px;
+  height: calc(100vh - 140px);
 }
