@@ -10,13 +10,16 @@ app.controller('resultsController', ['$state', '$scope', '$stateParams', 'UserAu
 					var parsedData = JSON.parse(data.orderData);
 					var chosenOptions = [];
 					for (key in parsedData) {
-						// wow this is bad
-						if (key !== "address" && key !== "county" && key !== "sampleType" && key !== "wellDepth" && key !== "wellCasingDiam" && key !== "endUse" && key !== "testReasons") {
+						// this is a list of properties from the parsed data to ignore
+						var ignoreFields = ["address", "county", "sampleType", "wellDepth", "wellCasingDiam", "endUse", "testReasons"];
+						if (!ignoreFields.hasOwnProperty(key)) {
 							if (parsedData[key] == 1) {
+								// we are adding the desired water quality parameters to an array
 								chosenOptions.push(key);
 							}
 						}
 					}
+					// update the table header labels using the array we generated
 					$scope.options = chosenOptions;
 					$scope.note = "All values expressed as parts per billion (ppb) except pH.";
 					// take the chosen options and generate random results

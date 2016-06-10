@@ -11,10 +11,11 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * Input fields validated using AngularJS
 * Error messages and services-forms load in nested views using AngularUI Routing
 	- Do we need to load them in nested views? Of course not; it's just a demonstration of AngularUI Routing. Otherwise we could just use ng-show, jQuery, or even vanilla JavaScript.
-* Sample submission forms are submitted to the server using a custom http abstraction service.
+* Form data are submitted to the API using custom AngularJS services that abstract the $http requests.
 * Nodemailer sends the user a confirmation email when order is complete and paid for.
 * User can view the status of each order (unpaid/paid) from the "View orders" page.
 * User can view the location of their samples on a map using Google Maps Geocoding API + Leaflet + Mapbox.
+* If the order status is "paid", the user can view results for each order.
 
 ## Built with...
 * Bootstrap 3 (requires jQuery)
@@ -30,11 +31,12 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 
 ### Custom AngularJS services
 * UserAuthService - makes an $http GET request to the Node server (i.e., the API) to make sure that the token stored in $cookies is also stored in the MySQL database.
-* GetRequestService - provides functions that make $http GET requests to the the API.
-* PostRequestService - provides functions that make $http POST requests to the API.
+* GetRequestService - provides functions that make $http GET requests to the the API and send back data to the controllers.
+* PostRequestService - provides functions that make $http POST requests to the API and send back data to the controllers.
 * GeocodingService - makes an $http GET request to Google Maps Geocoding API to look up the geographic coordinates of the sample address.
+* ResultsService - sends order info to the API, which generates results for that order or sends back existing results; sends back results to the 'results' controller.
 
-### A note on using the Leaflet map:
+### A note on API keys and other constants:
 If you download the source code and attempt to run the app on your computer, you will need a public access token from Mapbox. Otherwise, the embedded maps will not work. Store your access token under /app/constants/mapbox.constant.js like so:
 ```javascript
 const MAPBOX_ACCESS_TOKEN = 'my_public_access_token';
@@ -43,9 +45,9 @@ When you create a Mapbox account, you will also need to go to the [Mapbox Editor
 ```javascript
 const MAPBOX_PROJECT_ID = 'my_mapbox_editor_project_id';
 ```
-Similarly, Google Maps Geocoding API also requires an API key, which can be stored in /app/constants/google-maps.constant.js.
 
-### A note on using Nodemailer, Stripe, and MySQL:
+Similarly, Google Maps Geocoding API requires an API key, which can be stored as GOOGLE_MAPS_API_KEY in /app/constants/google-maps.constant.js.
+
 Nodemailer will not work without a valid "from" email address and password. You can use Google, Yahoo, etc., but you will need to use either [OAuth2 authentication](https://nodemailer.com/using-gmail/), or modify your email account's security settings to allow "Less Secure" apps. Store your username and password in /server/routes/secrets.js, along with your Stripe key and MySQL login info:
 ```javascript
 module.exports = {
@@ -60,3 +62,5 @@ module.exports = {
 	}
 };
 ```
+
+Finally, the API_KEY constant (stored in /app/constants/api-url.constant.js) should point to http://localhost:3090.
