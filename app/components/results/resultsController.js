@@ -25,12 +25,12 @@ app.controller('resultsController', ['$state', '$scope', '$stateParams', 'UserAu
 					});
 				});
 			} else {
-				// generate a standard set of options for a soil test
-				$scope.options = ["Nitrate (ppm)", "Phosphate (ppm)", "Potassium (ppm)", "pH", "Electrical conductivity (µS/cm)"];
+				// generate table headers for the soil test results
+				$scope.options = ["Nitrate (ppm)", "Phosphate (ppm)", "Potassium (ppm)", "pH", "Electrical conductivity (mS/cm)"];
+				// generate random results from the standard test options
 				ResultsService.genResults($stateParams.id, $stateParams.type, $scope.options).then(function(data) {
 					$scope.results = data.results;
 				});
-
 			}
 		} else {
 			$state.go('login');

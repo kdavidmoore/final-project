@@ -19,6 +19,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 				$scope.errorMessage = "That username is taken.";
 			} else if ($stateParams.problem == "password") {
 				$scope.errorMessage = "The passwords entered do not match.";
+			} else if ($stateParams.problem == "unknown") {
+				$scope.errorMessage = "The server is probably down.";
 			}
 		}
 	})
@@ -34,6 +36,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 				$scope.errorMessage = "The username entered does not exist in our system.";
 			} else if ($stateParams.problem == "password") {
 				$scope.errorMessage = "The password entered does not match our records.";
+			} else if ($stateParams.problem == "unknown") {
+				$scope.errorMessage = "The server is probably down.";
 			}
 		}
 	})

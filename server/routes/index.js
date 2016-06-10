@@ -244,7 +244,7 @@ router.post('/results', function(req, res, next) {
 		if (err) {
 			throw err;
 		} else if (results.length > 0) {
-			// send back the results from the database
+			// send back the results from the database in JSON format
 			res.json({ results: JSON.parse(results[0].results) });
 		} else {
 			// if no results are found, generate new results
@@ -260,7 +260,9 @@ router.post('/results', function(req, res, next) {
 				if (err) {
 					throw err;
 				} else {
-					res.json({ results: newResults });
+					// an object inside an object?
+					// ugly, but it has to be consistent with the way that existing results are sent back
+					res.json({ results: resultsObj });
 				}
 			});
 		}
