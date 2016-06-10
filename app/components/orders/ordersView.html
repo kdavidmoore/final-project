@@ -8,18 +8,22 @@
 		<div class="col-sm-12 col-md-10">
 			<table class="table">
 				<tr>
-					<th>Sample type</th>
-					<th>Sample location</th>
+					<th>Type</th>
+					<th>Location</th>
 					<th>Submitted</th>
-					<th>Order status</th>
+					<th>Status</th>
 					<th>Results</th>
 				</tr>
 				<tr ng-repeat="item in orders">
 					<td><span style="text-transform: capitalize;">{{item.orderType}}</span></td>
-					<td><a ui-sref="map({ path: '{{item.id}}' })">Launch map</a></td>
-					<td>{{item.timestamp | date: "MM/dd/yyyy 'at' h:mm a"}}</td>
+					<td><a ui-sref="map({ path: '{{item.id}}' })">
+						<span><i class="glyphicon glyphicon-map-marker"></i></span>
+					</a></td>
+					<td>{{item.timestamp | date: "MM/dd/yyyy"}}</td>
 					<td>{{item.orderStatus}}</td>
-					<td><a ui-sref="results({ type: '{{item.orderType}}', id: '{{item.id}}' })" ng-show="item.orderStatus == 'paid'">View results</a></td>
+					<td><a ui-sref="results({ type: '{{item.orderType}}', id: '{{item.id}}' })" ng-show="item.orderStatus == 'paid'">
+						<span><i class="glyphicon glyphicon-stats"></i></span>
+					</a></td>
 				</tr>
 			</table>
 		</div>
