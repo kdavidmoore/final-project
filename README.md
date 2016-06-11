@@ -8,15 +8,16 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 
 ## Features
 * User can register and log in.
-* User login status is tracked using ngCookies.
+* User login status is tracked using rand-token (which generates a 32-character alphanumeric token) and ngCookies (which stores the random token received from the API).
 * Input fields validated using AngularJS.
 * Error messages and services-forms load in nested views using AngularUI Routing.
 	- Do we need to load them in nested views? Of course not; it's just a demonstration of AngularUI Router. Otherwise we could just use ng-show, jQuery, or even vanilla JavaScript.
 * Form data are submitted to the API using custom AngularJS services that abstract the $http requests.
+* Passwords are encrypted using bcrypt-nodejs before being stored in the database.
 * Nodemailer sends the user a confirmation email when order is complete and paid for.
 * User can view the status of each order (unpaid/paid) from the "View orders" page.
 * User can view the location of their samples on a map using Google Maps Geocoding API + Leaflet + Mapbox.
-* If the order status is "paid", the user can view results for each order using Angular Chart
+* If the order status is "paid", the user can view results for each order using Angular Chart.
 
 ## Built with
 * Bootstrap 3 (requires jQuery)
@@ -24,19 +25,21 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 * AngularJS v1.5.5
 * [AngularUI Router](https://github.com/angular-ui/ui-router)
 * [Leaflet.js](http://leafletjs.com/)
-* [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start#sample-request)
+* [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start)
 * [Angular Chart](https://jtblin.github.io/angular-chart.js/) (requires Chart.js)
 * [Express](http://expressjs.com/)
 * Node.js [driver](https://www.npmjs.com/package/mysql) for MySQL
 * Node.js [module](https://stripe.com/docs/libraries) for Stripe
 * [Nodemailer](http://nodemailer.com/)
+* [bcrypt-nodejs](https://www.npmjs.com/package/bcrypt-nodejs)
+* [rand-token](https://www.npmjs.com/package/rand-token)
 
 ### Custom AngularJS services
 * UserAuthService - makes an $http GET request to the Node server (i.e., the API) to make sure that the token stored in $cookies is also stored in the MySQL database.
 * GetRequestService - provides functions that make $http GET requests to the the API and send back data to the controllers.
 * PostRequestService - provides functions that make $http POST requests to the API and send back data to the controllers.
 * GeocodingService - makes an $http GET request to Google Maps Geocoding API to look up the geographic coordinates of the sample address.
-* ResultsService - sends order info to the API, which generates results for that order or sends back existing results; sends back results to the 'results' controller.
+* ResultsService - sends order info to the API, which generates results for that order or sends back existing results; sends back results to the "results" controller.
 
 ## Build process
 After downloading the source code, cd into the project directory and install the Node package dependencies:
