@@ -55,6 +55,8 @@ router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
 });
 
+/* used by services */
+
 router.get('/getLabServices', function(req, res, next) {
 	connection.query('SELECT * FROM services ORDER BY serviceType', function(err, results, fields) {
 		if (err) {
@@ -64,6 +66,8 @@ router.get('/getLabServices', function(req, res, next) {
 		}
 	});
 });
+
+/* used by login, register, services, and results */
 
 router.get('/checkToken/:token', function(req, res, next) {
 	if (req.params.token == undefined) {
@@ -83,6 +87,8 @@ router.get('/checkToken/:token', function(req, res, next) {
 	}
 });
 
+/* used by orders and results */
+
 router.get('/getUsername/:token', function(req, res, next) {
 	if (req.params.token == undefined) {
 		res.json({ failure: 'noToken' });
@@ -100,6 +106,8 @@ router.get('/getUsername/:token', function(req, res, next) {
 	}
 });
 
+/* used by payment and orders */
+
 router.get('/getOrderId/:token', function(req, res, next) {
 	connection.query('SELECT id FROM orders WHERE token = ? ORDER BY timestamp DESC', [req.params.token],
 		function(err, results, fields) {
@@ -115,6 +123,8 @@ router.get('/getOrderId/:token', function(req, res, next) {
 		});
 });
 
+/* used by results */
+
 router.get('/getOrders/:user', function(req, res, next) {
 	connection.query('SELECT id, timestamp, orderType, orderStatus FROM orders WHERE username = ?', [req.params.user],
 		function(err, results, fields) {
@@ -125,6 +135,8 @@ router.get('/getOrders/:user', function(req, res, next) {
 			}
 	});
 });
+
+/* used by results */
 
 router.get('/getOrderData/:id', function(req, res, next) {
 	connection.query('SELECT orderData FROM orders WHERE id = ?', [req.params.id],
@@ -140,6 +152,8 @@ router.get('/getOrderData/:id', function(req, res, next) {
 /***************/
 /* POST routes */
 /***************/
+
+/* used by register */
 
 router.post('/register', function(req, res, next) {
 	var token = randtoken.generate(32);
@@ -171,6 +185,8 @@ router.post('/register', function(req, res, next) {
 		});
 });
 
+/* used by login */
+
 router.post('/login', function(req, res, next) {
 	connection.query('SELECT * FROM accounts WHERE username = ?', [req.body.username],
 		function(err, results, fields) {
@@ -200,6 +216,8 @@ router.post('/login', function(req, res, next) {
 		});
 });
 
+/* used by services */
+
 router.post('/postSampleData', function(req, res, next) {
 	// when a sample submission form is posted, add the sample data/metadata to the database
 	connection.query('INSERT INTO orders SET ?', req.body, function(err, result){
@@ -210,6 +228,8 @@ router.post('/postSampleData', function(req, res, next) {
 		}
 	});
 });
+
+/* used by payment */
 
 router.post('/payment', function(req, res, next) {
 	stripe.charges.create({
@@ -236,6 +256,8 @@ router.post('/payment', function(req, res, next) {
 		}
 	});
 });
+
+/* used by results */
 
 router.post('/results', function(req, res, next) {
 	var id = req.body.orderId;

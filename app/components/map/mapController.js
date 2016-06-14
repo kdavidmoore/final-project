@@ -1,5 +1,6 @@
 app.controller('mapController', ['$state', '$window', '$scope', '$stateParams', 'UserAuthService', 'GetRequestService', 'GeocodingService',
 	function($state, $window, $scope, $stateParams, UserAuthService, GetRequestService, GeocodingService) {
+	$scope.orderId = $stateParams.path;
 	
 	var myLat = 32.062;
 	var myLong = -84.924;
