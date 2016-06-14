@@ -16,7 +16,7 @@ var connection = mysql.createConnection({
 });
 
 // this function only gets called in the payments route
-function sendReceipt(orderId, sendToAddress) {
+function sendReceipt(orderType, orderId, sendToAddress) {
 	var transporter = nodemailer.createTransport({
 		service: 'Yahoo',
 		auth: {
@@ -26,10 +26,10 @@ function sendReceipt(orderId, sendToAddress) {
 	});
 
 	var emailBody = '<p>Dear customer,</p>' +
-					'<p>Thank you for your recent sample submission.&nbsp;' +
-					'Your order ID is: ' + orderId + '</p>' +
+					'<p>Thank you for your recent '+ orderType +' sample submission.&nbsp;' +
+					'Your order number is: '+ orderId +'.</p>' +
 					'<p>Sincerely,</p>' +
-					'<p><a href="http://kdavidmoore.com">ABC Cooperative Extension</a></p>';
+					'<p><a href="http://ag.kdavidmoore.com">ABC Cooperative Extension</a></p>';
 	var mailOptions = {
 		from: secrets.getSecrets().FROM_ADDRESS,
 		to: sendToAddress,
@@ -89,16 +89,16 @@ router.get('/checkToken/:token', function(req, res, next) {
 
 /* used by orders and results */
 
-router.get('/getUsername/:token', function(req, res, next) {
+router.get('/getUserId/:token', function(req, res, next) {
 	if (req.params.token == undefined) {
 		res.json({ failure: 'noToken' });
 	} else {
-		connection.query('SELECT username FROM accounts WHERE token = ?', [req.params.token],
+		connection.query('SELECT id FROM accounts WHERE token = ?', [req.params.token],
 			function(err, results, fields) {
 				if (err) {
 					throw err;
 				} else if (results.length > 0) {
-					res.json({ username: results[0] });
+					res.json({ id: results[0] });
 				} else {
 					res.json({ failure: 'badToken' });
 				}
@@ -106,11 +106,11 @@ router.get('/getUsername/:token', function(req, res, next) {
 	}
 });
 
-/* used by payment and orders */
+/* used by payment */
 
-router.get('/getOrderId/:token', function(req, res, next) {
-	connection.query('SELECT id FROM orders WHERE token = ? ORDER BY timestamp DESC', [req.params.token],
-		function(err, results, fields) {
+router.get('/getOrderId/:user', function(req, res, next) {
+	connection.query('SELECT id FROM orders WHERE userId = ? ORDER BY timestamp DESC',
+		[req.params.user], function(err, results, fields) {
 			if (err) {
 				throw err;
 			} else {
@@ -126,8 +126,8 @@ router.get('/getOrderId/:token', function(req, res, next) {
 /* used by results */
 
 router.get('/getOrders/:user', function(req, res, next) {
-	connection.query('SELECT id, timestamp, orderType, orderStatus FROM orders WHERE username = ?', [req.params.user],
-		function(err, results, fields) {
+	connection.query('SELECT id, timestamp, orderType, orderStatus FROM orders WHERE userId = ? ORDER BY timestamp DESC',
+		[req.params.user], function(err, results, fields) {
 			if (err) {
 				throw err;
 			} else {
@@ -246,7 +246,7 @@ router.post('/payment', function(req, res, next) {
 					if (err) {
 						throw err;
 					} else {
-						sendReceipt(req.body.orderId, req.body.stripeEmail);
+						sendReceipt(req.body.orderType, req.body.orderId, req.body.stripeEmail);
 						res.render('index', {
 							title: 'Success',
 							body: 'Your order has been processed.'

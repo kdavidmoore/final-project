@@ -65,7 +65,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		}
 	})
 	.state('payment', {
-		url: "/payment",
+		url: "/payment/:type",
 		templateUrl: "app/components/payment/paymentView.html"
 	})
 	.state('orders', {

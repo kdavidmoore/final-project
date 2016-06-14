@@ -7,12 +7,12 @@ app.controller('servicesController', ['$state', '$scope', '$cookies', 'UserAuthS
 	});
 
 	$scope.submitForm = function(formType) {
-		UserAuthService.checkToken().then(function(data) {
-			if (data.success == "validated") {
-				GetRequestService.getUsername().then(function(data) {
-					PostRequestService.postSampleData(formType, data.username, $scope.formData).then(function(data) {
+		UserAuthService.checkToken().then(function(result) {
+			if (result.success == "validated") {
+				GetRequestService.getUserId().then(function(data) {
+					PostRequestService.postSampleData(formType, data.id, $scope.formData).then(function(data) {
 						if (data == "ok") {
-							$state.go('payment');
+							$state.go('payment', { type: formType });
 						} else {
 							$state.go('services.error', { problem: 'postingForm' });
 						}

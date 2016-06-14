@@ -2,7 +2,7 @@
 This full-stack eCommerce app is my final project for the 16 Week Immersive Bootcamp at [DigitalCrafts](http://digitalcrafts.com). The app allows users to submit soil/water sample information to a Cooperative Extension service and view (random) test results electronically. It's basically a MEAN stack app, except I used MySQL instead of MongoDB as the database.
 
 --------------------
-[demo](http://ag.kdavidmoore.com)
+[demo here](http://ag.kdavidmoore.com)
 
 ## Table of Contents
 - [Example / Usage](#example--usage)
@@ -93,6 +93,10 @@ const API_KEY = 'http://localhost:3090';
 * User can view the status of each order (unpaid/paid) from the "View orders" page.
 * User can view the location of their samples on a map using Google Maps Geocoding API + Leaflet + Mapbox.
 * If the order status is "paid", the user can view results for each order using Angular Chart.
+
+### Database Schema
+MySQL
+![Schema](http://i66.tinypic.com/14njn1y.png)
 
 ## Questions and Issues
 Please direct any questions about the app to [Keith Moore](http://kdavidmoore.com/).

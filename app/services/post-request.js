@@ -58,8 +58,7 @@ app.factory('PostRequestService', function($http, $cookies) {
 			method: 'POST',
 			url: API_URL + '/postSampleData',
 			data: {
-				username: user,
-				token: $cookies.get('token'),
+				userId: user,
 				orderType: type,
 				orderData: JSON.stringify(data),
 				orderStatus: "unpaid"

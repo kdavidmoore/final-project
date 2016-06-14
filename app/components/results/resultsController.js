@@ -1,7 +1,7 @@
 app.controller('resultsController', ['$state', '$scope', '$stateParams', 'UserAuthService', 'ResultsService',
 	function($state, $scope, $stateParams, UserAuthService, ResultsService) {
-	UserAuthService.checkToken().then(function(data) {
-		if (data.success == "validated") {
+	UserAuthService.checkToken().then(function(result) {
+		if (result.success == "validated") {
 			$scope.orderId = $stateParams.id;
 			$scope.orderType = $stateParams.type;
 			// get results for selected order
@@ -23,7 +23,7 @@ app.controller('resultsController', ['$state', '$scope', '$stateParams', 'UserAu
 					$scope.labels = chosenOptions;
 					$scope.note = "All values expressed as parts per billion (ppb) except pH.";
 					// take the chosen options and generate random results
-					ResultsService.genResults($stateParams.id, $stateParams.type, $scope.options).then(function(data) {
+					ResultsService.genResults($stateParams.id, $stateParams.type, $scope.labels).then(function(data) {
 						//$scope.results = data.results;
 						$scope.data = [ data.results ];
 					});
@@ -32,7 +32,7 @@ app.controller('resultsController', ['$state', '$scope', '$stateParams', 'UserAu
 				// generate table headers for the soil test results
 				$scope.labels = ["Nitrate (ppm)", "Phosphate (ppm)", "Potassium (ppm)", "pH", "Electrical conductivity (mS/cm)"];
 				// generate random results from the standard test options
-				ResultsService.genResults($stateParams.id, $stateParams.type, $scope.options).then(function(data) {
+				ResultsService.genResults($stateParams.id, $stateParams.type, $scope.labels).then(function(data) {
 					//$scope.results = data.results;
 					$scope.data = [ data.results ];
 				});

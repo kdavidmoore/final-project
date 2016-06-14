@@ -11,21 +11,21 @@ app.factory('GetRequestService', function($http, $cookies) {
 		});
 	}
 
-	function getUsername() {
+	function getUserId() {
 		return $http({
 			method: 'GET',
-			url: API_URL + '/getUsername/' + $cookies.get('token')
+			url: API_URL + '/getUserId/' + $cookies.get('token')
 		}).then(function successCallback(result) {
-			return result.data.username;
+			return result.data.id;
 		}, function errorCallback(result) {
 			return result.status;
 		});
 	}
 
-	function getOrderId() {
+	function getOrderId(user) {
 		return $http({
 			method: 'GET',
-			url: API_URL + '/getOrderId/' + $cookies.get('token')
+			url: API_URL + '/getOrderId/' + user
 		}).then(function successCallback(result) {
 			return result.data.orderId;
 		}, function errorCallback(result) {
@@ -57,7 +57,7 @@ app.factory('GetRequestService', function($http, $cookies) {
 
 	return {
 		getLabServices: getLabServices,
-		getUsername: getUsername,
+		getUserId: getUserId,
 		getOrderId: getOrderId,
 		getOrders: getOrders,
 		getSampleLocation: getSampleLocation

@@ -6,8 +6,8 @@ app.controller('mapController', ['$state', '$window', '$scope', '$stateParams', 
 	var myLong = -84.924;
 	var address = '';
 	// get the sample id from $stateParams.path and look up the address
-	UserAuthService.checkToken().then(function(data) {
-		if (data.success == 'validated') {
+	UserAuthService.checkToken().then(function(result) {
+		if (result.success == 'validated') {
 			GetRequestService.getSampleLocation($stateParams.path).then(function(data) {
 				
 				address = JSON.parse(data.orderData).address;
