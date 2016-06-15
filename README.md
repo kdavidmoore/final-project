@@ -96,7 +96,7 @@ const API_KEY = 'http://localhost:3090';
 
 ### Database Schema
 MySQL
-![Schema](http://i66.tinypic.com/14njn1y.png)
+![Schema](http://i64.tinypic.com/o89csp.png)
 
 ## Questions and Issues
 Please direct any questions about the app to [Keith Moore](http://kdavidmoore.com/).
