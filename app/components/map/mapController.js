@@ -1,16 +1,19 @@
 app.controller('mapController', ['$state', '$window', '$scope', '$stateParams', 'UserAuthService', 'GetRequestService', 'GeocodingService',
 	function($state, $window, $scope, $stateParams, UserAuthService, GetRequestService, GeocodingService) {
-	$scope.orderId = $stateParams.path;
+	$scope.orderId = $stateParams.id;
 	
 	var myLat = 32.062;
 	var myLong = -84.924;
 	var address = '';
-	// get the sample id from $stateParams.path and look up the address
+	var sampleDescrip = '';
+	// get the sample id from $stateParams.id and look up the address
 	UserAuthService.checkToken().then(function(result) {
 		if (result.success == 'validated') {
-			GetRequestService.getSampleLocation($stateParams.path).then(function(data) {
-				
+			GetRequestService.getSampleLocation($stateParams.id).then(function(data) {
+				// get the address from the parsed data
 				address = JSON.parse(data.orderData).address;
+				// get the location description or sample type
+				sampleDescrip = JSON.parse(data.orderData).location;
 				
 				GeocodingService.lookupAddress(address).then(function(data) {
 					if (data == 'error') {
@@ -27,7 +30,9 @@ app.controller('mapController', ['$state', '$window', '$scope', '$stateParams', 
 							accessToken: MAPBOX_ACCESS_TOKEN
 						}).addTo(myMap);
 
-						$window.L.marker([myLat, myLng]).addTo(myMap);
+						$window.L.marker([myLat, myLng]).addTo(myMap)
+						.bindPopup("<b style='text-transform: capitalize'>" +
+							$stateParams.type + " Sample</b><br />Description: " + sampleDescrip).openPopup();
 					}
 				});
 			});

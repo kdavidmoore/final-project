@@ -15,12 +15,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url: "/error/:problem",
 		templateUrl: "app/shared/error/errorView.html",
 		controller: function($stateParams, $scope) {
-			if ($stateParams.problem == "username") {
-				$scope.errorMessage = "That username is taken.";
-			} else if ($stateParams.problem == "password") {
-				$scope.errorMessage = "The passwords entered do not match.";
-			} else if ($stateParams.problem == "unknown") {
-				$scope.errorMessage = "The server is probably down.";
+			switch ($stateParams.problem) {
+				case "username":
+					$scope.errorMessage = "That username is taken.";
+					break;
+				case "password":
+					$scope.errorMessage = "The passwords entered do not match.";
+					break;
+				case "unknown":
+					$scope.errorMessage = "The server is probably down.";
+					break;
+				default:
+					$scope.errorMessage = "Something went wrong.";
 			}
 		}
 	})
@@ -32,12 +38,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url: "/error/:problem",
 		templateUrl: "app/shared/error/errorView.html",
 		controller: function($stateParams, $scope) {
-			if ($stateParams.problem == "username") {
-				$scope.errorMessage = "The username entered does not exist in our system.";
-			} else if ($stateParams.problem == "password") {
-				$scope.errorMessage = "The password entered does not match our records.";
-			} else if ($stateParams.problem == "unknown") {
-				$scope.errorMessage = "The server is probably down.";
+			switch ($stateParams.problem) {
+				case "username":
+					$scope.errorMessage = "The username entered does not exist in our system.";
+					break;
+				case "password":
+					$scope.errorMessage = "The password entered does not match our records.";
+					break;
+				case "unknown":
+					$scope.errorMessage = "The server is probably down.";
+					break;
+				default:
+					$scope.errorMessage = "Something went wrong.";
 			}
 		}
 	})
@@ -57,10 +69,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url: "/error/:problem",
 		templateUrl: "app/shared/error/errorView.html",
 		controller: function($stateParams, $scope) {
-			if ($stateParams.problem == "login") {
-				$scope.errorMessage = "You must be logged in to post a sample submission form.";
-			} else if ($stateParams.problem == "postingForm") {
-				$scope.errorMessage = "Something went wrong.";
+			switch ($stateParams.problem) {
+				case "login":
+					$scope.errorMessage = "You must be logged in to post a sample submission form.";
+					break;
+				case "postingForm":
+					$scope.errorMessage = "Something went wrong.";
+					break;
+				default:
+					$scope.errorMessage = "Something went wrong.";
 			}
 		}
 	})
@@ -77,7 +94,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl: "app/components/results/resultsView.html"
 	})
 	.state('map', {
-		url: "/map/*path",
+		url: "/map/:type/:id",
 		templateUrl: "app/components/map/mapView.html"
 	})
 	.state('map.error', {

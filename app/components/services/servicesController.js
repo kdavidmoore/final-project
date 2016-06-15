@@ -29,9 +29,9 @@ app.controller('servicesController', ['$state', '$scope', '$cookies', 'UserAuthS
 		if (type == 'soil') {
 			$scope.formData =
 			{
-				location: "a home garden plot",
 				address: "3423 Piedmont Rd NE, Atlanta, GA 30305",
 				county: "Fulton",
+				location: "a home garden plot for tomatoes",
 				homeGarden: 1
 			};
 		} else if (type == 'water') {
@@ -39,15 +39,14 @@ app.controller('servicesController', ['$state', '$scope', '$cookies', 'UserAuthS
 			{
 				address: "859 Spring St NW, Atlanta, GA 30308",
 				county: "Fulton",
-				sampleType: "householdWell",
+				location: "household well",
 				wellDepth: 25,
 				wellCasingDiam: 18,
 				endUse: "drinking",
 				testReasons: "granite bedrock and old pipes",
-				Iron: 1,
 				Lead: 1,
-				Radon: 1,
-				Uranium: 1
+				Copper: 1,
+				Radon: 1
 			};
 		}
 	}

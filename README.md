@@ -11,9 +11,9 @@ This full-stack eCommerce app is my final project for the 16 Week Immersive Boot
 - [Questions and Issues](#questions-and-issues)
 
 ## Example / Usage
-Upon visiting the app in your browser, the first thing to do is register by clicking the "Register" link on the navbar. Fill out the form with your information and click "Submit". Then you will be taken to the "Services" page, where you get start filling out an order form for soil or water samples. Once your order is complete and paid for, click the link to "View orders" to see whether your test results are ready.
+Upon visiting the app in your browser, the first thing to do is register by clicking the "Register" link on the navbar. Fill out the form with your information and click "Submit". Then you will be taken to the "Services" page, where you get start filling out an order form for soil or water samples. When you are asked to enter credit card information, use "4242424242424242" as the card number, any future date as the expiration date, and any three-digit number as the CVC. Once your order is complete and paid for, follow the link to "View the status of my orders" to see whether your test results are ready. Results are randomly generated for all "paid" orders.
 
-**Insert GIF here**
+![GIF](http://i68.tinypic.com/2eej885.gif)
 
 ## Getting Started
 ### Installing dependencies

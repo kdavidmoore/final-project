@@ -14,31 +14,31 @@
 				<h4>Type of Sample</h4>
 				<div class="radio">
 					<label>
-						<input type="radio" ng-model="formData.sampleType" value="householdWell">
+						<input type="radio" ng-model="formData.location" value="household well">
 						Household well
 					</label>
 				</div>
 				<div class="radio">
 					<label>
-						<input type="radio" ng-model="formData.sampleType" value="irrigationWell">
+						<input type="radio" ng-model="formData.location" value="irrigation well">
 						Irrigation well
 					</label>
 				</div>
 				<div class="radio">
 					<label>
-						<input type="radio" ng-model="formData.sampleType" value="irrigationPond">
+						<input type="radio" ng-model="formData.location" value="irrigation pond">
 						Irrigation pond
 					</label>
 				</div>
 				<div class="radio">
 					<label>
-						<input type="radio" ng-model="formData.sampleType" value="municipalWater">
+						<input type="radio" ng-model="formData.location" value="municipal water">
 						Municipal water
 					</label>
 				</div>
 				<div class="radio">
 					<label>
-						<input type="radio" ng-model="formData.sampleType" value="fishPond">
+						<input type="radio" ng-model="formData.location" value="fish pond">
 						Fish pond
 					</label>
 				</div>
@@ -94,6 +94,12 @@
 					<label>
 						<input type="checkbox" ng-model="formData.Lead" ng-true-value="1" ng-false-value="0">
 						Lead
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.Copper" ng-true-value="1" ng-false-value="0">
+						Copper
 					</label>
 				</div>
 				<div class="checkbox">

@@ -16,7 +16,7 @@
 				</tr>
 				<tr ng-repeat="item in orders">
 					<td><span style="text-transform: capitalize;">{{item.orderType}}</span></td>
-					<td><a ui-sref="map({ path: '{{item.id}}' })">
+					<td><a ui-sref="map({ type: '{{item.orderType}}', id: '{{item.id}}' })">
 						<span><i class="glyphicon glyphicon-map-marker"></i></span>
 					</a></td>
 					<td>{{item.timestamp | date: "MM/dd/yyyy"}}</td>
