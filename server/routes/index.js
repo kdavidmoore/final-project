@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 	host: 'localhost',
 	user: secrets.getSecrets().DB_USER,
 	password: secrets.getSecrets().DB_PASSWORD,
-	database: 'final-project'
+	database: 'ag-labs'
 });
 
 // this function only gets called in the payments route
