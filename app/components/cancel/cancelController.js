@@ -3,7 +3,7 @@ app.controller("cancelController", ['$state', '$scope', '$stateParams', 'UserAut
 	UserAuthService.checkToken().then(function(data) {
 		if (data.success == "validated") {
 			CancelService.deleteOrder($stateParams.id).then(function(result) {
-				if (result.success == "deleted") {
+				if (result.data == "done") {
 					$state.go('cancel.success');
 				} else {
 					$state.go('cancel.error');
