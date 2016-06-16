@@ -162,5 +162,5 @@ a:hover {
 }
 /* line 23, ../libs/compass/sass/_results.scss */
 .chart-wrapper {
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 300px);
 }
