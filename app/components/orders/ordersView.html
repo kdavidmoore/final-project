@@ -17,12 +17,12 @@
 				<tr ng-repeat="item in orders">
 					<td><span style="text-transform: capitalize;">{{item.orderType}}</span></td>
 					<td><a ui-sref="map({ type: '{{item.orderType}}', id: '{{item.id}}' })">
-						<span><i class="glyphicon glyphicon-map-marker"></i></span>
+						<span><i class="glyphicon glyphicon-map-marker"></i></span> view
 					</a></td>
 					<td>{{item.timestamp | date: "MM/dd/yyyy"}}</td>
 					<td>{{item.orderStatus}}</td>
 					<td><a ui-sref="results({ type: '{{item.orderType}}', id: '{{item.id}}' })" ng-show="item.orderStatus == 'paid'">
-						<span><i class="glyphicon glyphicon-stats"></i></span>
+						<span><i class="glyphicon glyphicon-stats"></i></span> view
 					</a></td>
 				</tr>
 			</table>

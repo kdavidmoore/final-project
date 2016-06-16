@@ -5,7 +5,7 @@ a:hover {
 
 /* line 5, ../libs/compass/sass/_shared.scss */
 .outer-wrapper {
-  min-height: calc(100vh - 40px);
+  min-height: calc(100vh - 50px);
 }
 
 /* line 9, ../libs/compass/sass/_shared.scss */
