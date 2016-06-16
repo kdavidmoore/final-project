@@ -1,36 +1,34 @@
-<div class="container content-wrapper">
+<div class="container content-wrapper" ng-controller="paymentController">
 
 	<div class="row">
-		<div class="col-sm-12">
+		<div class="col-sm-12 col-md-2 col-lg-3">
 			<h1>Payment</h1>
 			<h5>Ready to check out</h5>
 		</div>
 	</div>
 
-	<div class="row" ng-controller="paymentController">
-		<div class="col-sm-12">
-			<div class="button-holder">
-				<form action="http://kdavidmoore.com:3090/payment" method="POST">
-					<script
-						src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-						data-key="pk_test_S1PLtt6vW1RchhitC9359CNc"
-						data-amount="5000"
-						data-name="Payment"
-						data-description="Payment for your testing service"
-						data-image="/assets/img/corn.png"
-						data-locale="auto">
-					</script>
+	<div class="col-sm-12 col-md-10 col-lg-9">
+		<div class="button-holder">
+			<form action="http://kdavidmoore.com:3090/payment" method="POST">
+				<script
+					src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+					data-key="pk_test_S1PLtt6vW1RchhitC9359CNc"
+					data-amount="5000"
+					data-name="Payment"
+					data-description="Payment for your testing service"
+					data-image="/assets/img/corn.png"
+					data-locale="auto">
+				</script>
 
-					<input type="hidden" name="orderType" value="{{orderType}}">
-					<input type="hidden" name="orderId" value="{{orderId}}">
-				</form>
-			</div>
+				<input type="hidden" name="orderType" value="{{orderType}}">
+				<input type="hidden" name="orderId" value="{{orderId}}">
+			</form>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-sm-12">
-			<a ui-sref="services" class="text-warning">Nevermind, I want to cancel my order.</a>
+			<a ui-sref="cancel({ id: '{{item.orderId}}'})" class="text-warning">Nevermind, I want to cancel my order.</a>
 		</div>
 	</div>
 </div>

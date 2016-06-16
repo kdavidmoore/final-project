@@ -89,6 +89,21 @@ app.config(function($cookiesProvider, $stateProvider, $urlRouterProvider) {
 		url: "/payment/:type",
 		templateUrl: "app/components/payment/paymentView.html"
 	})
+	.state('cancel', {
+		url: "/cancel/:id",
+		templateUrl: "app/components/cancel/cancelView.html"
+	})
+	.state('cancel.success', {
+		url: "/success",
+		templateUrl: "app/components/cancel/successView.html"
+	})
+	.state('cancel.error', {
+		url: "/error",
+		templateUrl: "app/shared/error/errorView.html",
+		controller: function($scope) {
+			$scope.errorMessage = "For some reason, your order could not be deleted form the database.";
+		}
+	})
 	.state('orders', {
 		url: "/orders",
 		templateUrl: "app/components/orders/ordersView.html"
