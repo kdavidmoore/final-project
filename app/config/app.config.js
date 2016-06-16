@@ -1,4 +1,8 @@
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($cookiesProvider, $stateProvider, $urlRouterProvider) {
+	// set defaults for the $cookiesProvider to be used by $cookies
+	$cookiesProvider.defaults.domain = 'ag.kdavidmoore.com';
+	$cookiesProvider.defaults.path = '/';
+
 	// for any unmatched url, redirect to /home
 	$urlRouterProvider.otherwise("/home");
 	// now set up the states

@@ -9,14 +9,18 @@ app.controller('loginController', ['$state', '$scope', 'UserAuthService', 'PostR
 
 	$scope.loginForm = function() {
 		PostRequestService.postLoginData($scope.username, $scope.password).then(function(data) {
-			if (data == "success") {
-				$state.go('services');
-			} else if (data == "passwordError") {
-				$state.go('login.error', { problem: 'password' });
-			} else if (data == "userError") {
-				$state.go('login.error', { problem: 'username' });
-			} else {
-				$state.go('login.error', { problem: 'unknown' });
+			switch (data) {
+				case "success":
+					$state.go('services');
+					break;
+				case "passwordError":
+					$state.go('login.error', { problem: 'password' });
+					break;
+				case "userError":
+					$state.go('login.error', { problem: 'username' });
+					break;
+				default:
+					$state.go('login.error', { problem: 'unknown' });
 			}
 		});
 	}

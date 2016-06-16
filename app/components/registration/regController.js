@@ -10,12 +10,15 @@ app.controller('regController', ['$state', '$scope', 'UserAuthService', 'PostReq
 	$scope.registerForm = function() {
 		if ($scope.password == $scope.password2) {
 			PostRequestService.postRegData($scope.username, $scope.password, $scope.email).then(function(data) {
-				if (data == "success") {
-					$state.go('services');
-				} else if (data == "usernameExists") {
-					$state.go('register.error', { problem: 'username' });
-				} else {
-					$state.go('register.error', { problem: 'unknown' });
+				switch (data) {
+					case "success":
+						$state.go('services');
+						break;
+					case "usernameExists":
+						$state.go('register.error', { problem: 'username' });
+						break;
+					default:
+						$state.go('register.error', { problem: 'unknown' });
 				}
 			});
 		} else {

@@ -14,7 +14,7 @@ app.factory('PostRequestService', function($http, $cookies) {
 				var expDate = new Date();
 				expDate.setDate(expDate.getTime() + (30 * 60000));
 				// get a token back from the API and store it inside cookies with an expiration date of 30 minutes from now
-				$cookies.put('token', result.data.token, { 'path': '/', 'expires': expDate });
+				$cookies.put('token', result.data.token, { 'expires': expDate });
 				return 'success';
 			} else if (result.data.failure == 'notUnique') {
 				return 'usernameExists';
@@ -43,7 +43,7 @@ app.factory('PostRequestService', function($http, $cookies) {
 				var expDate = new Date();
   				expDate.setDate(expDate.getTime() + (30 * 60000));
 				// store the token inside cookies with an expiration date of 30 minutes from now
-				$cookies.put('token', result.data.token, { 'path': '/', 'expires': expDate });
+				$cookies.put('token', result.data.token, { 'expires': expDate });
 				return 'success';
 			} else {
 				return 'someProblem';
