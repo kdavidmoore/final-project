@@ -136,3 +136,27 @@ a:hover {
     font-size: 12px;
   }
 }
+/* line 1, ../libs/compass/sass/_results.scss */
+.custom-legend {
+  padding-top: 10px;
+  color: #4D5360;
+}
+/* line 4, ../libs/compass/sass/_results.scss */
+.custom-legend ul {
+  list-style-type: none;
+}
+/* line 6, ../libs/compass/sass/_results.scss */
+.custom-legend ul li {
+  color: #4D5360;
+}
+
+@media (max-width: 380px) {
+  /* line 13, ../libs/compass/sass/_results.scss */
+  .custom-legend {
+    font-size: 10px;
+  }
+  /* line 16, ../libs/compass/sass/_results.scss */
+  .custom-legend ul li {
+    font-size: 10px;
+  }
+}

@@ -11,15 +11,12 @@
 				<h5 class="text-center">Order #{{orderId}}</h5>
 				<div class="container-fluid">
 					<canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels"></canvas>
-					<!-- <table class="table">
-						<tr>
-							<th ng-repeat="label in labels">{{label}}</th>
-						</tr>
-						<tr>
-							<td ng-repeat="result in results">{{result | number: 2}}</td>
-						</tr>
-					</table> -->
-					{{note}}
+					<span class="custom-legend">
+						{{note}}
+						<ul ng-repeat="item in longNote">
+							<li>{{item}}</li>
+						</ul>
+					</span>
 				</div>
 			</div>
 		</div>

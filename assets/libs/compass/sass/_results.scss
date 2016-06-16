@@ -1,0 +1,21 @@
+.custom-legend {
+	padding-top: 10px;
+	color: #4D5360;
+	ul {
+		list-style-type: none;
+		li {
+			color: #4D5360;
+		}
+	}
+}
+
+@media (max-width: 380px) {
+	.custom-legend {
+		font-size: 10px;
+		ul {
+			li {
+				font-size: 10px;
+			}
+		}
+	}
+}
