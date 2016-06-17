@@ -270,7 +270,6 @@ router.post('/results', function(req, res, next) {
 });
 
 router.post('/cancel', function(req, res, next) {
-	console.log(req.body.orderId);
 	connection.query('DELETE FROM orders WHERE id = ?', [req.body.orderId], function(err, result) {
 		if (err) {
 			throw err;

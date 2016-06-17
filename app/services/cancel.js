@@ -8,6 +8,7 @@ app.factory('CancelService', function($http) {
 					orderId: orderId
 				}
 			}).then(function successCallback(result) {
+				console.log(result.data);
 				if (result.data.success == "deleted") {
 					return "done";
 				}
