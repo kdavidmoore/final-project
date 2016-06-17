@@ -2,7 +2,7 @@ app.controller('loginController', ['$state', '$scope', 'UserAuthService', 'PostR
 	function($state, $scope, UserAuthService, PostRequestService) {
 	// if the user is already logged in, send them on to the services page
 	UserAuthService.checkToken().then(function(data) {
-		if (data.success == "validated") {
+		if (data.success == 'validated') {
 			$state.go('services');
 		}
 	});

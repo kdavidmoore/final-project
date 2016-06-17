@@ -1,5 +1,4 @@
 server/node_modules/*
 server/routes/secrets.js
-server/routes/login.js
 app/constants/*
 .DS_Store
